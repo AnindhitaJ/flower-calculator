@@ -1,66 +1,29 @@
-let flowerCount = 0;
+function angka(v){return Number(String(v).replace(/\./g,''))||0}
+function rupiah(v){return Number(v).toLocaleString('id-ID')}
 
-function createFlowerPriceOptions() {
-  const prices = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
-  return prices.map(price => `<option value="${price}">Rp${price.toLocaleString('id-ID')}</option>`).join("");
+document.querySelectorAll('.nominal').forEach(el=>{
+ el.addEventListener('input',()=>{
+  let x=el.value.replace(/\D/g,'');
+  el.value=x?rupiah(x):'';
+ });
+});
+
+let n=0;
+function addFlower(){
+ n++;
+ let d=document.createElement('div');
+ d.className='flower';
+ d.innerHTML=`Bunga ${n}<input class="qty" value="1"><select class="price"><option value="1000">Rp1.000</option><option value="2000">Rp2.000</option><option value="3000">Rp3.000</option><option value="4000">Rp4.000</option><option value="5000">Rp5.000</option><option value="10000">Rp10.000</option></select>`;
+ flowers.appendChild(d);
 }
-
-function addFlower() {
-  flowerCount++;
-  const flower = document.createElement("div");
-  flower.className = "flower";
-  flower.innerHTML = `
-    <div class="flower-title">🌸 Bunga ${flowerCount}</div>
-    <div class="flower-grid">
-      <input class="qty" type="number" min="0" value="1" placeholder="Jumlah" />
-      <select class="price">
-        ${createFlowerPriceOptions()}
-      </select>
-    </div>
-  `;
-  document.getElementById("flowers").appendChild(flower);
-}
-
-function valueOf(id) {
-  return Number(document.getElementById(id).value || 0);
-}
-
-function rupiah(x) {
-  return "Rp" + Math.round(x).toLocaleString("id-ID");
-}
-
-function hitung() {
-  let modal = 0;
-
-  document.querySelectorAll(".flower").forEach(flower => {
-    const qty = Number(flower.querySelector(".qty").value || 0);
-    const price = Number(flower.querySelector(".price").value || 0);
-    modal += qty * price;
-  });
-
-  [
-    ["b8q","b8p"], ["b12q","b12p"], ["b20q","b20p"],
-    ["cq","cp"], ["pq","pp"], ["dq","dp"], ["plq","plp"], ["pbq","pbp"]
-  ].forEach(([qtyId, priceId]) => {
-    modal += valueOf(qtyId) * valueOf(priceId);
-  });
-
-  modal += valueOf("listrik") + valueOf("tenaga") + valueOf("jasa");
-
-  const hargaJual = modal + (modal * valueOf("profit") / 100);
-
-  document.getElementById("hasil").innerHTML = `
-    <div class="summary-block">
-      <div class="label">Total Modal</div>
-      <div class="value">${rupiah(modal)}</div>
-    </div>
-    <div class="divider"></div>
-    <div class="summary-block">
-      <div class="label">Harga Jual</div>
-      <div class="value accent">${rupiah(hargaJual)}</div>
-    </div>
-  `;
-}
-
 addFlower();
-hitung();
+
+function v(id){return angka(document.getElementById(id).value)}
+function hitung(){
+ let total=0;
+ document.querySelectorAll('.flower').forEach(x=>total+=Number(x.querySelector('.qty').value)*Number(x.querySelector('.price').value));
+ total+=v('cq')*v('cp')+v('pq')*v('pp')+v('dq')*v('dp')+v('pbq')*v('pbp');
+ total+=v('listrik')+v('tenaga')+v('jasa');
+ let jual=total+(total*Number(profit.value)/100);
+ hasil.innerHTML='Modal<br><b>Rp'+rupiah(total)+'</b><br><br>Harga Jual<br><b>Rp'+rupiah(Math.round(jual))+'</b>';
+}
