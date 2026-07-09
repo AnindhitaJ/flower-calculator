@@ -1,39 +1,33 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bloomy</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="app">
-<h1>🌷 Bloomy</h1>
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bloomy</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="app">
+<header><h1>🌷 Bloomy</h1><p>Kalkulator Modal Buket</p></header>
 
-<section class="card">
-<h2>🎀 Packaging</h2>
-<div class="item"><b>Kertas Cellophane</b><input id="cellQty" placeholder="Jumlah lembar" value="0"><input class="harga" id="cellPrice" value="3000"></div>
-<div class="item"><b>Pita</b><input id="ribbonQty" placeholder="Jumlah meter" value="0"><input class="harga" id="ribbonPrice" value="2000"></div>
-<div class="item"><b>Daun</b><input id="leafQty" placeholder="Jumlah batang" value="0"><input class="harga" id="leafPrice" value="1000"></div>
-<div class="item"><b>Plastik/Paper Bag</b><input id="bagQty" value="0"><input class="harga" id="bagPrice" value="10000"></div>
+<section class="card"><h2>💐 Bunga</h2><div id="flowers"></div><button onclick="addFlower()">+ Tambah Bunga</button></section>
+
+<section class="card pink"><h2>🧸 Boneka</h2>
+<div class="box">Boneka 8 cm<input class="qty" id="b8q" value="0"><input class="harga" id="b8p" value="5000"></div>
+<div class="box">Boneka 12 cm<input class="qty" id="b12q" value="0"><input class="harga" id="b12p" value="18000"></div>
+<div class="box">Boneka 20 cm<input class="qty" id="b20q" value="0"><input class="harga" id="b20p" value="30000"></div>
 </section>
 
-<section class="card">
-<h2>🍫 Snack</h2>
-<div class="item">
-<input id="snackName" placeholder="Nama snack">
-<input id="snackQty" placeholder="Jumlah" value="0">
-<input class="harga" id="snackPrice" value="0">
-</div>
+<section class="card pink"><h2>🎀 Packaging</h2>
+<div class="box">Cellophane<input class="qty" id="cq" value="0"><input class="harga" id="cp" value="3000"></div>
+<div class="box">Pita<input class="qty" id="pq" value="0"><input class="harga" id="pp" value="2000"></div>
+<div class="box">Daun<input class="qty" id="dq" value="0"><input class="harga" id="dp" value="1000"></div>
+<div class="box">Plastik / Paper Bag<input class="qty" id="pbq" value="0"><input class="harga" id="pbp" value="10000"></div>
 </section>
 
-<section class="card">
-<h2>💰 Total</h2>
-<button onclick="hitung()">Hitung</button>
-<div id="hasil"></div>
+<section class="card pink"><h2>🍫 Snack</h2>
+<div class="box"><input id="snackName" placeholder="Nama snack"><input class="qty" id="snackQ" value="0"><input class="harga" id="snackP" value="0"></div>
 </section>
 
-</div>
-<script src="app.js"></script>
-</body>
-</html>
+<section class="card"><h2>⚙️ Biaya</h2>
+<div class="box">Listrik<input class="harga" id="listrik" value="5000"></div>
+<div class="box">Tenaga<input class="harga" id="tenaga" value="25000"></div>
+<div class="box">Jasa<input class="harga" id="jasa" value="50000"></div>
+</section>
+
+<section class="card"><h2>📈 Profit</h2><input id="profit" value="30">%</section>
+<button class="main" onclick="hitung()">Hitung Harga Jual</button>
+<div class="result" id="hasil">Rp0</div>
+</div><script src="app.js"></script></body></html>
