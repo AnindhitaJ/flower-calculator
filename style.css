@@ -1,82 +1,23 @@
 *{box-sizing:border-box}
-body{
-margin:0;
-background:#faf0e8;
-font-family:Inter,Arial;
-color:#4b3040;
-}
-.app{
-max-width:480px;
-margin:auto;
-padding:18px;
-}
+body{margin:0;background:#fff3f7;font-family:Segoe UI,Arial;color:#513646}
+.app{max-width:480px;margin:auto;padding:18px}
 header{text-align:center;margin-bottom:20px}
-header h1{
-font-size:42px;
-margin:0;
-color:#b84f7a;
-}
-header p{color:#8b6875}
-.card,.summary{
-background:#fff;
-border-radius:28px;
-padding:20px;
-margin-bottom:16px;
-box-shadow:0 8px 25px rgba(120,70,90,.1);
-}
-h2{font-size:18px;color:#a94770}
-.item{
-background:#fff7fa;
-padding:15px;
-border-radius:18px;
-margin-bottom:12px;
-}
-.title{
-font-weight:bold;
-margin-bottom:10px;
-}
-input,select{
-width:100%;
-padding:13px;
-border-radius:14px;
-border:1px solid #ecd9e2;
-margin-top:8px;
-}
-.product,.line{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-padding:12px 0;
-border-bottom:1px solid #f2e4ea;
-}
-.product input{
-width:90px;
-}
-.line input{
-width:120px;
-}
-.add{
-width:100%;
-background:#f7d6e4;
-border:0;
-padding:14px;
-border-radius:16px;
-}
-.calculate{
-width:100%;
-padding:16px;
-border:0;
-border-radius:18px;
-background:#b84f7a;
-color:white;
-font-size:17px;
-font-weight:bold;
-}
-.summary{
-text-align:center;
-}
-.summary h1{
-color:#b84f7a;
-font-size:34px;
-}
+header h1{font-size:42px;color:#bd527c;margin:0}
+.card,.summary{background:white;border-radius:26px;padding:20px;margin-bottom:16px;box-shadow:0 8px 25px #ead8df}
+h2{color:#a84870;font-size:18px}
+.item{background:#fff8fb;padding:15px;border-radius:18px;margin:10px 0}
+input,select{width:100%;padding:12px;border-radius:14px;border:1px solid #ead5df;margin-top:8px}
+.product{display:grid;grid-template-columns:1fr auto 70px;gap:10px;align-items:center;padding:14px 0;border-bottom:1px solid #f4e5eb}
+.product input{margin:0;text-align:center}
+.cost div{background:#fff8fb;border-radius:16px;padding:12px;margin:10px 0}
+.cost span{display:block;font-weight:600;margin-bottom:5px}
+.percent{display:flex;align-items:center;gap:10px}
+.percent input{width:100%}
+.add,.calculate{width:100%;padding:15px;border:0;border-radius:16px;font-weight:bold}
+.add{background:#f7d8e5;color:#8c4763}
+.calculate{background:#bd527c;color:white;font-size:16px}
+.summary{text-align:center}
+.summary p{color:#9b7182}
+.summary h1{color:#bd527c;font-size:34px}
+.summary h2{font-size:28px}
+.line{height:1px;background:#f0dfe6;margin:15px 0}

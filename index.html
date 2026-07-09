@@ -8,10 +8,9 @@
 </head>
 <body>
 <div class="app">
-
 <header>
 <h1>🌷 Bloomy</h1>
-<p>Rancang Buket & Hitung Harga Jual</p>
+<p>Kalkulator Modal & Harga Jual Buket</p>
 </header>
 
 <section class="card">
@@ -22,51 +21,41 @@
 
 <section class="card">
 <h2>🧸 Boneka</h2>
-<div class="product">
-<div>
-<b>Boneka 8 cm</b>
-<p>Rp5.000</p>
-</div>
-<input id="boneka" type="number" value="0">
-</div>
-<div class="product">
-<div>
-<b>Boneka 12 cm</b>
-<p>Rp18.000</p>
-</div>
-<input id="boneka2" type="number" value="0">
-</div>
-<div class="product">
-<div>
-<b>Boneka 20 cm</b>
-<p>Rp30.000</p>
-</div>
-<input id="boneka3" type="number" value="0">
-</div>
+<div class="product"><span>Boneka 8 cm</span><b>Rp5.000</b><input id="b1" value="0"></div>
+<div class="product"><span>Boneka 12 cm</span><b>Rp18.000</b><input id="b2" value="0"></div>
+<div class="product"><span>Boneka 20 cm</span><b>Rp30.000</b><input id="b3" value="0"></div>
 </section>
 
 <section class="card">
-<h2>⚙️ Biaya</h2>
-<div class="line"><span>Listrik</span><input id="listrik" value="5000"></div>
-<div class="line"><span>Tenaga</span><input id="tenaga" value="25000"></div>
-<div class="line"><span>Jasa</span><input id="jasa" value="50000"></div>
+<h2>🎀 Biaya Tambahan</h2>
+<div class="cost">
+<div><span>⚡ Listrik</span><input id="listrik" value="5000"></div>
+<div><span>👩 Tenaga</span><input id="tenaga" value="25000"></div>
+<div><span>✨ Jasa</span><input id="jasa" value="50000"></div>
+</div>
 </section>
 
-<section class="card">
-<h2>📈 Profit</h2>
-<div class="line"><span>Margin</span><input id="profit" value="30">%</div>
+<section class="card profit">
+<h2>📈 Keuntungan</h2>
+<div class="profit-box">
+<label>Target Profit</label>
+<div class="percent"><input id="profit" value="30">%</div>
+</div>
 </section>
 
-<button class="calculate" onclick="hitung()">Hitung Harga</button>
+<button class="calculate" onclick="hitung()">Hitung Harga Jual</button>
 
 <section class="summary">
+<div>
 <p>Total Modal</p>
 <h2 id="modal">Rp0</h2>
-
+</div>
+<div class="line"></div>
+<div>
 <p>Harga Jual</p>
 <h1 id="jual">Rp0</h1>
+</div>
 </section>
-
 </div>
 <script src="app.js"></script>
 </body>
