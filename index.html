@@ -1,33 +1,97 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bloomy</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="app">
-<header><h1>🌷 Bloomy</h1><p>Kalkulator Modal Buket</p></header>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bloomy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header><h1>🌷 Bloomy</h1><p>Kalkulator Buket</p></header>
 
-<section class="card"><h2>💐 Bunga</h2><div id="flowers"></div><button onclick="addFlower()">+ Tambah Bunga</button></section>
-
-<section class="card pink"><h2>🧸 Boneka</h2>
-<div class="box">Boneka 8 cm<input class="qty" id="b8q" value="0"><input class="harga" id="b8p" value="5000"></div>
-<div class="box">Boneka 12 cm<input class="qty" id="b12q" value="0"><input class="harga" id="b12p" value="18000"></div>
-<div class="box">Boneka 20 cm<input class="qty" id="b20q" value="0"><input class="harga" id="b20p" value="30000"></div>
+<section class="card">
+<h2>💐 Bunga</h2>
+<div class="field">
+<label>Jumlah Bunga</label>
+<input placeholder="Contoh: 5" value="1">
+<label>Harga Satuan</label>
+<input class="harga" placeholder="Contoh: Rp5.000" value="5000">
+</div>
+<button>+ Tambah Bunga</button>
 </section>
 
-<section class="card pink"><h2>🎀 Packaging</h2>
-<div class="box">Cellophane<input class="qty" id="cq" value="0"><input class="harga" id="cp" value="3000"></div>
-<div class="box">Pita<input class="qty" id="pq" value="0"><input class="harga" id="pp" value="2000"></div>
-<div class="box">Daun<input class="qty" id="dq" value="0"><input class="harga" id="dp" value="1000"></div>
-<div class="box">Plastik / Paper Bag<input class="qty" id="pbq" value="0"><input class="harga" id="pbp" value="10000"></div>
+<section class="card pink">
+<h2>🧸 Boneka</h2>
+<div class="field">
+<label>Ukuran Boneka</label>
+<input placeholder="Contoh: Boneka 8 cm">
+<label>Jumlah Boneka</label>
+<input placeholder="Contoh: 1">
+<label>Harga Boneka</label>
+<input class="harga" placeholder="Contoh: Rp5.000" value="5000">
+</div>
 </section>
 
-<section class="card pink"><h2>🍫 Snack</h2>
-<div class="box"><input id="snackName" placeholder="Nama snack"><input class="qty" id="snackQ" value="0"><input class="harga" id="snackP" value="0"></div>
+<section class="card pink">
+<h2>🎀 Packaging</h2>
+<div class="field">
+<label>Kertas Cellophane - Jumlah Lembar</label>
+<input placeholder="Contoh: 2 lembar">
+<label>Harga / Lembar</label>
+<input class="harga" placeholder="Contoh: Rp3.000" value="3000">
+
+<label>Pita - Jumlah Meter</label>
+<input placeholder="Contoh: 3 meter">
+<label>Harga / Meter</label>
+<input class="harga" placeholder="Contoh: Rp2.000" value="2000">
+
+<label>Daun - Jumlah Batang</label>
+<input placeholder="Contoh: 5 batang">
+<label>Harga / Batang</label>
+<input class="harga" placeholder="Contoh: Rp1.000" value="1000">
+
+<label>Plastik / Paper Bag</label>
+<input placeholder="Jumlah">
+<label>Harga</label>
+<input class="harga" placeholder="Contoh: Rp10.000" value="10000">
+</div>
 </section>
 
-<section class="card"><h2>⚙️ Biaya</h2>
-<div class="box">Listrik<input class="harga" id="listrik" value="5000"></div>
-<div class="box">Tenaga<input class="harga" id="tenaga" value="25000"></div>
-<div class="box">Jasa<input class="harga" id="jasa" value="50000"></div>
+<section class="card pink">
+<h2>🍫 Snack</h2>
+<div class="field">
+<label>Nama Snack</label>
+<input placeholder="Contoh: SilverQueen">
+
+<label>Jumlah Snack</label>
+<input placeholder="Contoh: 2">
+
+<label>Harga Snack</label>
+<input class="harga" placeholder="Contoh: Rp10.000">
+</div>
 </section>
 
-<section class="card"><h2>📈 Profit</h2><input id="profit" value="30">%</section>
-<button class="main" onclick="hitung()">Hitung Harga Jual</button>
-<div class="result" id="hasil">Rp0</div>
-</div><script src="app.js"></script></body></html>
+<section class="card">
+<h2>⚙️ Biaya</h2>
+<div class="field">
+<label>Listrik</label>
+<input class="harga" value="5000" placeholder="Rp5.000">
+<label>Tenaga</label>
+<input class="harga" value="25000" placeholder="Rp25.000">
+<label>Jasa</label>
+<input class="harga" value="50000" placeholder="Rp50.000">
+</div>
+</section>
+
+<section class="card">
+<h2>📈 Profit</h2>
+<input placeholder="Persentase profit" value="30"> %
+</section>
+
+<button class="main">Hitung Harga Jual</button>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
