@@ -1,33 +1,73 @@
-function bersih(v){return Number(String(v).replace(/\./g,''))||0}
-function format(el){el.addEventListener('input',()=>{let x=el.value.replace(/\D/g,'');el.value=x?Number(x).toLocaleString('id-ID'):''})}
-document.querySelectorAll('.harga').forEach(format);
-
-let flower=0;
-function addFlower(){
-flower++;
-let d=document.createElement('div');
-d.className='box';
-d.innerHTML=`🌸 Bunga ${flower}<input class="qty" value="1"><input class="harga" value="5000">`;
-flowers.appendChild(d);
-document.querySelectorAll('.harga').forEach(format);
+function cleanNumber(value) {
+  return Number(String(value).replace(/\./g, "")) || 0;
 }
+
+function attachRupiahFormatter(el) {
+  if (el.dataset.formatted === "yes") return;
+  el.dataset.formatted = "yes";
+  el.addEventListener("input", () => {
+    const raw = el.value.replace(/\D/g, "");
+    el.value = raw ? Number(raw).toLocaleString("id-ID") : "";
+  });
+  const initial = el.value.replace(/\D/g, "");
+  el.value = initial ? Number(initial).toLocaleString("id-ID") : "";
+}
+
+function setupHargaFields() {
+  document.querySelectorAll(".harga").forEach(attachRupiahFormatter);
+}
+
+let flowerCount = 0;
+
+function addFlower() {
+  flowerCount++;
+  const box = document.createElement("div");
+  box.className = "flower-box";
+  box.innerHTML = `
+    <div class="item-title">🌸 Bunga ${flowerCount}</div>
+    <div class="field-label">Jumlah</div>
+    <input class="qty" type="number" min="0" value="1">
+    <div class="field-label">Harga</div>
+    <input class="harga flower-price" type="text" value="5000">
+  `;
+  document.getElementById("flowers").appendChild(box);
+  setupHargaFields();
+}
+
+function n(id) {
+  return cleanNumber(document.getElementById(id).value);
+}
+
+function hitung() {
+  let total = 0;
+
+  document.querySelectorAll(".flower-box").forEach(box => {
+    const qty = Number(box.querySelector(".qty").value || 0);
+    const harga = cleanNumber(box.querySelector(".harga").value);
+    total += qty * harga;
+  });
+
+  [
+    ["b8q","b8p"],["b12q","b12p"],["b20q","b20p"],
+    ["cq","cp"],["pq","pp"],["dq","dp"],["pbq","pbp"]
+  ].forEach(([qtyId, hargaId]) => {
+    total += n(qtyId) * n(hargaId);
+  });
+
+  total += n("listrik") + n("tenaga") + n("jasa");
+
+  const profit = Number(document.getElementById("profit").value || 0);
+  const jual = total + (total * profit / 100);
+
+  document.getElementById("hasil").innerHTML = `
+    <div class="result-label">Total Modal</div>
+    <div class="result-value">Rp${Math.round(total).toLocaleString("id-ID")}</div>
+    <div class="result-separator"></div>
+    <div class="result-label">Harga Jual</div>
+    <div class="result-value accent">Rp${Math.round(jual).toLocaleString("id-ID")}</div>
+  `;
+}
+
 addFlower();
-
-let bonekaData=[['Boneka 8 cm','b8'],['Boneka 12 cm','b12'],['Boneka 20 cm','b20']];
-bonekaData.forEach(x=>{
-boneka.innerHTML+=`<div class="box">${x[0]}<input class="qty" id="${x[1]}q" value="0"><input class="harga" id="${x[1]}p" value="0"></div>`;
-});
-document.querySelectorAll('.harga').forEach(format);
-
-function n(id){return bersih(document.getElementById(id).value)}
-function hitung(){
-let total=0;
-document.querySelectorAll('.box').forEach(x=>{
-let q=x.querySelector('.qty');let h=x.querySelector('.harga');
-if(q&&h) total+=Number(q.value)*bersih(h.value);
-});
-[['cq','cp'],['pq','pp'],['dq','dp'],['pbq','pbp']].forEach(a=>total+=n(a[0])*n(a[1]));
-total+=n('listrik')+n('tenaga')+n('jasa');
-let jual=total+(total*Number(profit.value)/100);
-hasil.innerHTML=`Modal<br><b>Rp${total.toLocaleString('id-ID')}</b><br><br>Harga Jual<br><b>Rp${Math.round(jual).toLocaleString('id-ID')}</b>`;
-}
+setupHargaFields();
+hitung();
