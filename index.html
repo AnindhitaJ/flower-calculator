@@ -1,26 +1,70 @@
-<!doctype html>
-<html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bloomy</title><link rel="stylesheet" href="style.css"></head>
-<body><main>
-<h1>🌷 Bloomy</h1><p>Kalkulator Buket</p>
-<section><h2>💐 Bunga</h2><div id="flowers"></div><button onclick="addFlower()">+ Tambah Bunga</button></section>
-<section><h2>🧸 Boneka</h2>
-<div>8 cm Rp5.000 <input id="b8" value="0"></div>
-<div>12 cm Rp18.000 <input id="b12" value="0"></div>
-<div>20 cm Rp30.000 <input id="b20" value="0"></div>
-</section>
-<section><h2>🎀 Packaging</h2>
-<div>Cellophane <input id="cqty" value="0"> <input id="cprice" value="3000"></div>
-<div>Pita meter <input id="pqty" value="0"> <input id="pprice" value="2000"></div>
-<div>Daun batang <input id="dqty" value="0"> <input id="dprice" value="1000"></div>
-<div>Plastik pembungkus <input id="plqty" value="0"> <input id="plprice" value="3000"></div>
-<div>Paper bag <input id="pbqty" value="0"> <input id="pbprice" value="10000"></div>
-</section>
-<section><h2>⚙️ Biaya</h2>
-<div>Listrik <input id="listrik" value="5000"></div>
-<div>Tenaga <input id="tenaga" value="25000"></div>
-<div>Jasa <input id="jasa" value="50000"></div>
-</section>
-<section><h2>📈 Profit</h2><input id="profit" value="30"> %</section>
-<button onclick="hitung()">Hitung</button>
-<section id="hasil">Rp0</section>
-</main><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloomy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+<header>
+<h1>🌷 Bloomy</h1>
+<p>Kalkulator Buket</p>
+</header>
+
+<div class="card">
+<h2>💐 Bunga</h2>
+<div id="flowers"></div>
+<button onclick="addFlower()">＋ Tambah Bunga</button>
+</div>
+
+<div class="card">
+<h2>🧸 Boneka</h2>
+<div class="product-row">
+<div><b>8 cm</b><small>Rp5.000</small></div>
+<input value="0" id="b8">
+</div>
+<div class="product-row">
+<div><b>12 cm</b><small>Rp18.000</small></div>
+<input value="0" id="b12">
+</div>
+<div class="product-row">
+<div><b>20 cm</b><small>Rp30.000</small></div>
+<input value="0" id="b20">
+</div>
+</div>
+
+<div class="card">
+<h2>🎀 Packaging</h2>
+<div class="product-row"><span>Cellophane</span><input value="0"><b>Rp3.000</b></div>
+<div class="product-row"><span>Pita</span><input value="0"><b>Rp2.000/m</b></div>
+<div class="product-row"><span>Daun</span><input value="0"><b>Rp1.000</b></div>
+<div class="product-row"><span>Paper Bag</span><input value="0"><b>Rp10.000</b></div>
+</div>
+
+<div class="card">
+<h2>⚙️ Biaya</h2>
+<div class="cost-row"><span>⚡ Listrik</span><b>Rp5.000</b></div>
+<div class="cost-row"><span>👩 Tenaga</span><b>Rp25.000</b></div>
+<div class="cost-row"><span>✨ Jasa</span><b>Rp50.000</b></div>
+</div>
+
+<div class="card profit">
+<h2>📈 Profit</h2>
+<div class="profit-row">
+<input value="30"><span>%</span>
+</div>
+</div>
+
+<div class="summary">
+<p>Total Modal</p>
+<h2>Rp0</h2>
+<p>Harga Jual</p>
+<h1>Rp0</h1>
+</div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,1 +1,77 @@
-body{font-family:Arial;background:#fff1f6;padding:15px}main{max-width:480px;margin:auto}section{background:white;padding:18px;border-radius:22px;margin:15px 0;box-shadow:0 5px 20px #ddd}h1{color:#bd527c;text-align:center}h2{color:#a84870}input,select,button{width:100%;padding:12px;margin:5px 0;border-radius:12px;border:1px solid #ddd}button{background:#bd527c;color:white;border:0}#hasil{text-align:center;font-size:22px;font-weight:bold}
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#fff2f7;
+font-family:Arial;
+color:#503542;
+}
+.app{
+max-width:480px;
+margin:auto;
+padding:18px;
+}
+header{text-align:center}
+header h1{font-size:40px;color:#b64f79;margin:5px}
+.card,.summary{
+background:white;
+border-radius:26px;
+padding:20px;
+margin:16px 0;
+box-shadow:0 8px 25px #ead9df;
+}
+h2{color:#a4486d;font-size:19px}
+input,select,button{
+height:45px;
+border-radius:14px;
+border:1px solid #e8d6de;
+padding:0 14px;
+background:white;
+}
+button{
+width:100%;
+background:#bd527c;
+color:white;
+border:0;
+font-weight:bold;
+}
+.flower{
+background:#fff7fa;
+padding:15px;
+border-radius:18px;
+margin-bottom:12px;
+}
+.flower-head{
+font-weight:bold;
+margin-bottom:10px;
+}
+.two{
+display:grid;
+grid-template-columns:90px 1fr;
+gap:10px;
+}
+.product-row,.cost-row{
+display:grid;
+grid-template-columns:1fr 90px;
+align-items:center;
+gap:15px;
+padding:14px 0;
+border-bottom:1px solid #f3e5eb;
+}
+.product-row small{
+display:block;
+color:#9a7585;
+}
+.cost-row b{color:#b64f79;text-align:right}
+.profit-row{
+display:flex;
+gap:8px;
+align-items:center;
+}
+.profit-row input{width:100%}
+.summary{
+text-align:center;
+}
+.summary h1{
+font-size:34px;
+color:#b64f79;
+}
