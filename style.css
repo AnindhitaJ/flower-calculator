@@ -125,8 +125,7 @@ input{
 }
 .result{
   text-align:center;
-  position:sticky;
-  bottom:12px;
+  
 }
 .result-label{
   color:#936c7f;
