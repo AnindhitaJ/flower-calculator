@@ -3,32 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bloomy Fix</title>
+<title>Bloomy</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
-<header><h1>🌷 Bloomy</h1><p>Kalkulator Buket</p></header>
 
+<header>
+<h1>🌷 Bloomy</h1>
+<p>Kalkulator Modal Buket</p>
+</header>
 
-
-<section class="card">
+<div class="card">
 <h2>💐 Bunga</h2>
-<div id="flowers"></div>
+<div id="flower"></div>
 <button onclick="addFlower()">+ Tambah Bunga</button>
-</section>
+</div>
 
-<section class="card">
+<div class="card pink">
 <h2>🧸 Boneka</h2>
 <div id="boneka"></div>
-</section>
+</div>
 
-<section class="card">
+<div class="card pink">
 <h2>🎀 Packaging</h2>
-<div id="packaging"></div>
-</section>
+<div id="pack"></div>
+</div>
 
-<section class="card">
+<div class="card pink">
 <h2>🍫 Snack</h2>
 <label>Nama Snack</label>
 <input id="snackName" placeholder="Contoh: SilverQueen">
@@ -36,23 +38,31 @@
 <input id="snackQty" value="0">
 <label>Harga</label>
 <input class="harga" id="snackPrice" placeholder="Rp10.000">
-</section>
-
-<section class="card">
-<h2>⚙️ Biaya</h2>
-<input class="harga" id="listrik" value="5000" placeholder="Listrik">
-<input class="harga" id="tenaga" value="25000" placeholder="Tenaga">
-<input class="harga" id="jasa" value="50000" placeholder="Jasa">
-</section>
-
-<section class="card">
-<h2>📈 Profit</h2>
-<input id="profit" value="30">
-</section>
-
-<button class="main" onclick="hitung()">Hitung Harga Jual</button>
 </div>
 
+<div class="card">
+<h2>⚙️ Biaya</h2>
+<label>⚡ Listrik</label>
+<input class="harga" id="listrik" value="5000">
+<label>👩 Tenaga</label>
+<input class="harga" id="tenaga" value="25000">
+<label>✨ Jasa</label>
+<input class="harga" id="jasa" value="50000">
+</div>
+
+<div class="card">
+<h2>📈 Profit</h2>
+<label>Persentase Profit (%)</label>
+<input id="profit" value="30">
+</div>
+
+<button class="main" onclick="hitung()">Hitung Harga Jual</button>
+
+<div class="card result" id="hasil">
+Total Modal<br>Rp0<br><br>Harga Jual<br>Rp0
+</div>
+
+</div>
 <script src="app.js"></script>
 </body>
 </html>
