@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kalkulator Buket Bunga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card">
+<h1>🌸 Kalkulator Buket Bunga</h1>
+
+<label>Bunga</label>
+<select id="bunga">
+<option value="5000">Bunga Besar - Rp5.000</option>
+<option value="3000">Bunga Sedang - Rp3.000</option>
+<option value="1000">Bunga Kecil - Rp1.000</option>
+</select>
+<input id="jBunga" type="number" placeholder="Jumlah bunga">
+
+<label>Daun</label>
+<input id="daun" type="number" placeholder="Jumlah tangkai">
+
+<label>Packaging</label>
+<input id="cello" type="number" placeholder="Jumlah cello">
+<input id="tissu" type="number" placeholder="Jumlah tissu">
+<input id="foam" type="number" placeholder="Jumlah gabus/foam">
+
+<label>Aksesoris</label>
+<input id="pita" type="number" placeholder="Meter pita">
+<input id="lem" type="number" placeholder="Jumlah lem">
+
+<button onclick="hitung()">Hitung</button>
+
+<h2 id="hasil">Total Modal: Rp0</h2>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

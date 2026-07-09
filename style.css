@@ -1,0 +1,27 @@
+body{
+font-family:Arial;
+background:#fff0f5;
+display:flex;
+justify-content:center;
+padding:30px;
+}
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+width:350px;
+box-shadow:0 5px 20px #ddd;
+}
+h1{color:#9b4d68}
+input,select,button{
+width:100%;
+padding:10px;
+margin:6px 0;
+box-sizing:border-box;
+}
+button{
+background:#d88ca5;
+color:white;
+border:0;
+border-radius:10px;
+}
