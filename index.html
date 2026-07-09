@@ -1,54 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bloomy PWA</title>
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloomy Kalkulator Buket</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="app">
-<h1>🌷 Bloomy</h1>
-<p>Kalkulator Buket Bunga</p>
+  <div class="container">
+    <div class="header">
+      <h1>🌷 Bloomy</h1>
+      <p>Kalkulator Modal & Harga Jual Buket</p>
+    </div>
 
-<div class="card">
-<h2>Tambah Bunga</h2>
-<select id="ukuran">
-<option value="1000">Bunga Kecil - Rp1.000</option>
-<option value="3000">Bunga Sedang - Rp3.000</option>
-<option value="5000">Bunga Besar - Rp5.000</option>
-</select>
+    <div class="card">
+      <h2>💐 Bunga</h2>
+      <div id="bungaArea"></div>
+      <button class="secondary-btn" onclick="tambahBunga()">+ Tambah Bunga</button>
+    </div>
 
-<input id="jumlah" type="number" value="1" min="1">
-<button onclick="simpanBunga()">+ Simpan Bunga</button>
+    <div class="card">
+      <h2>🧸 Boneka</h2>
+      <p class="helper-text">Referensi boneka diambil dari pricelist contoh: 8 cm, 12 cm, dan 20 cm.</p>
 
-<div id="listBunga"></div>
-</div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="bonekaTipe">Pilih Boneka</label>
+          <select id="bonekaTipe" onchange="updateBonekaHarga()">
+            <option value="0">Tanpa Boneka</option>
+            <option value="5000">Boneka 8 cm - Rp5.000</option>
+            <option value="18000">Boneka 12 cm - Rp18.000</option>
+            <option value="30000">Boneka 20 cm - Rp30.000</option>
+          </select>
+        </div>
 
-<div class="card">
-<h2>Boneka</h2>
-<select id="boneka">
-<option value="0">Tanpa Boneka</option>
-<option value="5000">Boneka 8 cm - Rp5.000</option>
-<option value="18000">Boneka 12 cm - Rp18.000</option>
-<option value="30000">Boneka 20 cm - Rp30.000</option>
-</select>
-</div>
+        <div class="field">
+          <label for="bonekaQty">Jumlah Boneka</label>
+          <input id="bonekaQty" type="number" min="0" value="0" />
+        </div>
+      </div>
 
-<div class="card">
-<h2>Biaya</h2>
-<input id="profit" value="30" placeholder="Profit %">
-<p>Listrik Rp5.000</p>
-<p>Tenaga Rp25.000</p>
-<p>Jasa Rp50.000</p>
-</div>
+      <div class="field">
+        <label for="bonekaHarga">Harga Boneka (Bisa Diedit)</label>
+        <input id="bonekaHarga" type="number" min="0" value="0" />
+      </div>
+    </div>
 
-<button onclick="hitung()">Hitung Harga</button>
+    <div class="card">
+      <h2>🍃 Packaging</h2>
 
-<div class="result" id="hasil">Rp0</div>
-</div>
+      <div class="item-row">
+        <div class="item-name">Daun</div>
+        <input id="daunQty" type="number" min="0" value="0" />
+        <select id="daunHarga">
+          <option value="1000">Rp1.000</option>
+          <option value="2000">Rp2.000</option>
+          <option value="3000">Rp3.000</option>
+        </select>
+      </div>
 
-<script src="app.js"></script>
+      <div class="item-row">
+        <div class="item-name">Kertas Cello</div>
+        <input id="celloQty" type="number" min="0" value="0" />
+        <select id="celloHarga">
+          <option value="3000">Rp3.000</option>
+          <option value="4000">Rp4.000</option>
+          <option value="5000">Rp5.000</option>
+        </select>
+      </div>
+
+      <div class="item-row">
+        <div class="item-name">Kain Tissu</div>
+        <input id="tissuQty" type="number" min="0" value="0" />
+        <select id="tissuHarga">
+          <option value="1000">Rp1.000</option>
+          <option value="2000">Rp2.000</option>
+          <option value="3000">Rp3.000</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Biaya Lain</h2>
+
+      <div class="field">
+        <label for="listrik">Listrik</label>
+        <input id="listrik" type="number" min="0" value="5000" />
+      </div>
+
+      <div class="field">
+        <label for="tenaga">Tenaga</label>
+        <input id="tenaga" type="number" min="0" value="25000" />
+      </div>
+
+      <div class="field">
+        <label for="jasa">Jasa</label>
+        <input id="jasa" type="number" min="0" value="50000" />
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📈 Profit</h2>
+      <div class="field">
+        <label for="profit">Persentase Profit (%)</label>
+        <input id="profit" type="number" min="0" value="30" />
+      </div>
+    </div>
+
+    <button class="main-btn" onclick="hitung()">Hitung Harga</button>
+
+    <div class="result-card">
+      <div class="result-block">
+        <div class="result-label">Total Modal</div>
+        <div class="result-value" id="modalText">Rp0</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="result-block">
+        <div class="result-label">Profit</div>
+        <div class="result-sub" id="profitText">30%</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="result-block">
+        <div class="result-label">Harga Jual</div>
+        <div class="result-value accent" id="jualText">Rp0</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
