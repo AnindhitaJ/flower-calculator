@@ -9,29 +9,23 @@
 <div class="card">
 <h1>🌸 Kalkulator Buket Bunga</h1>
 
-<label>Bunga</label>
-<select id="bunga">
-<option value="5000">Bunga Besar - Rp5.000</option>
-<option value="3000">Bunga Sedang - Rp3.000</option>
-<option value="1000">Bunga Kecil - Rp1.000</option>
-</select>
-<input id="jBunga" type="number" placeholder="Jumlah bunga">
+<h3>Bunga</h3>
+<div id="bungaArea"></div>
+<button onclick="tambahBunga()">+ Tambah Bunga</button>
 
-<label>Daun</label>
-<input id="daun" type="number" placeholder="Jumlah tangkai">
+<h3>Daun & Packaging</h3>
+<div class="row"><span>Daun</span><input id="daunJumlah" type="number" value="0"><select id="daunHarga"><option>1000</option><option>2000</option><option>3000</option></select></div>
+<div class="row"><span>Kertas Cello</span><input id="celloJumlah" type="number" value="0"><select id="celloHarga"><option>3000</option><option>4000</option><option>5000</option></select></div>
+<div class="row"><span>Kain Tissu</span><input id="tissuJumlah" type="number" value="0"><select id="tissuHarga"><option>1000</option><option>2000</option><option>3000</option></select></div>
 
-<label>Packaging</label>
-<input id="cello" type="number" placeholder="Jumlah cello">
-<input id="tissu" type="number" placeholder="Jumlah tissu">
-<input id="foam" type="number" placeholder="Jumlah gabus/foam">
+<h3>Biaya</h3>
+<div class="row"><span>Listrik</span><input id="listrik" value="5000"></div>
+<div class="row"><span>Tenaga</span><input id="tenaga" value="25000"></div>
+<div class="row"><span>Jasa</span><input id="jasa" value="50000"></div>
 
-<label>Aksesoris</label>
-<input id="pita" type="number" placeholder="Meter pita">
-<input id="lem" type="number" placeholder="Jumlah lem">
-
-<button onclick="hitung()">Hitung</button>
-
+<button onclick="hitung()">Hitung Total</button>
 <h2 id="hasil">Total Modal: Rp0</h2>
+
 </div>
 <script src="script.js"></script>
 </body>
