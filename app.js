@@ -1,23 +1,42 @@
-function angka(id){
-return Number(document.getElementById(id).value.replace(/[^0-9]/g,'')||0);
+
+let count=0;
+
+const rupiah = (n) => "Rp" + Number(n).toLocaleString("id-ID");
+
+function formatRupiahInput(input){
+    input.addEventListener("input", function(){
+        let angka = this.value.replace(/\D/g, "");
+        this.value = angka ? Number(angka).toLocaleString("id-ID") : "";
+    });
 }
 
-function formatInput(id){
-let el=document.getElementById(id);
-el.value='Rp'+Number(el.value.replace(/[^0-9]/g,'')).toLocaleString('id-ID');
-
-el.addEventListener('blur',()=>{
-el.value='Rp'+Number(el.value.replace(/[^0-9]/g,'')).toLocaleString('id-ID');
+["listrik","tenaga","jasa"].forEach(id=>{
+    formatRupiahInput(document.getElementById(id));
 });
-}
 
-['listrik','tenaga','jasa'].forEach(formatInput);
+function angka(id){
+    return Number(document.getElementById(id).value.replace(/\./g,"") || 0);
+}
 
 function hitung(){
-let modal=angka('listrik')+angka('tenaga')+angka('jasa');
-let jual=modal+(modal*Number(profit.value)/100);
+    let modal = 0;
 
-result.innerHTML=
-`Total Modal<br><b>Rp${modal.toLocaleString('id-ID')}</b><br><br>
-Harga Jual<br><b>Rp${Math.round(jual).toLocaleString('id-ID')}</b>`;
+    document.querySelectorAll(".item").forEach(item=>{
+        modal += Number(item.querySelector(".price").value) *
+                 Number(item.querySelector(".qty").value || 0);
+    });
+
+    modal += angka("b1") * 5000;
+    modal += angka("b2") * 18000;
+    modal += angka("b3") * 30000;
+
+    modal += angka("listrik");
+    modal += angka("tenaga");
+    modal += angka("jasa");
+
+    let profitValue = Number(document.getElementById("profit").value || 0);
+    let jual = modal + (modal * profitValue / 100);
+
+    document.getElementById("modal").innerHTML = rupiah(modal);
+    document.getElementById("jual").innerHTML = rupiah(Math.round(jual));
 }
