@@ -1,42 +1,6 @@
-let count=0;
-const rupiah=n=>"Rp"+Number(n).toLocaleString("id-ID");
-
-function addItem(){
-count++;
-let d=document.createElement("div");
-d.className="item";
-d.innerHTML=`
-<b>🌸 Bunga ${count}</b>
-<select class="price">
-<option value="5000">Besar - Rp5.000</option>
-<option value="3000">Sedang - Rp3.000</option>
-<option value="1000">Kecil - Rp1.000</option>
-</select>
-<input class="qty" value="1" type="number">`;
-document.getElementById("items").appendChild(d);
-}
-addItem();
-
-function formatInput(el){
-el.addEventListener("blur",()=> {
-el.value=Number(el.value.replace(/\D/g,"")).toLocaleString("id-ID");
-});
-}
-["listrik","tenaga","jasa"].forEach(id=>formatInput(document.getElementById(id)));
-
-function num(id){
-return Number(document.getElementById(id).value.replace(/\./g,"")||0);
-}
-
-function hitung(){
-let modal=0;
-document.querySelectorAll(".item").forEach(x=>{
-modal+=Number(x.querySelector(".price").value)*Number(x.querySelector(".qty").value);
-});
-modal+=num("b1")*5000+num("b2")*18000+num("b3")*30000;
-modal+=num("listrik")+num("tenaga")+num("jasa");
-
-let jual=modal+(modal*Number(profit.value)/100);
-document.getElementById("modal").innerHTML=rupiah(modal);
-document.getElementById("jual").innerHTML=rupiah(Math.round(jual));
-}
+let n=0;
+function addFlower(){n++;let x=document.createElement('div');x.className='flower';x.innerHTML=`Bunga ${n}<input class=q value=1><select class=h><option value=5000>Besar 5000</option><option value=3000>Sedang 3000</option><option value=1000>Kecil 1000</option></select>`;flowers.appendChild(x)}
+addFlower();
+function num(id){return Number(document.getElementById(id).value||0)}
+function hitung(){let t=0;document.querySelectorAll('.flower').forEach(x=>t+=num2(x.querySelector('.q').value)*num2(x.querySelector('.h').value));t+=num('b8')*5000+num('b12')*18000+num('b20')*30000;t+=num('cqty')*num('cprice')+num('pqty')*num('pprice')+num('dqty')*num('dprice')+num('plqty')*num('plprice')+num('pbqty')*num('pbprice');t+=num('listrik')+num('tenaga')+num('jasa');let j=t+(t*num('profit')/100);hasil.innerHTML='Modal Rp'+t.toLocaleString('id-ID')+'<br>Harga Jual Rp'+Math.round(j).toLocaleString('id-ID')}
+function num2(x){return Number(x||0)}
