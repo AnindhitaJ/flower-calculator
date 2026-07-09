@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bloomy Buket</title>
-<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bloomy</title>
 <link rel="stylesheet" href="style.css">
-<meta name="theme-color" content="#c3547d">
 </head>
 <body>
 <div class="app">
+
+<header>
 <h1>🌷 Bloomy</h1>
-<p>Kalkulator Modal Buket</p>
+<p>Rancang Buket & Hitung Harga Jual</p>
+</header>
 
-<div class="card">
-<h3>💐 Bunga</h3>
-<div id="flowers"></div>
-<button onclick="addFlower()">+ Tambah Bunga</button>
+<section class="card">
+<h2>💐 Komponen Buket</h2>
+<div id="items"></div>
+<button class="add" onclick="addItem()">＋ Tambah Komponen</button>
+</section>
+
+<section class="card">
+<h2>🧸 Boneka</h2>
+<div class="product">
+<div>
+<b>Boneka 8 cm</b>
+<p>Rp5.000</p>
 </div>
-
-<div class="card">
-<h3>🧸 Boneka</h3>
-<label>Jumlah</label>
-<input id="bonekaQty" type="number" value="0">
-<label>Harga</label>
-<input id="bonekaPrice" type="number" value="5000">
+<input id="boneka" type="number" value="0">
 </div>
-
-<div class="card">
-<h3>📦 Packaging</h3>
-<input id="daun" placeholder="Daun (jumlah)" type="number" value="0">
-<input id="cello" placeholder="Cello (lembar)" type="number" value="0">
-<input id="tissu" placeholder="Tissu (lembar)" type="number" value="0">
+<div class="product">
+<div>
+<b>Boneka 12 cm</b>
+<p>Rp18.000</p>
 </div>
-
-<div class="card">
-<h3>⚙️ Biaya</h3>
-<input id="listrik" value="5000">
-<input id="tenaga" value="25000">
-<input id="jasa" value="50000">
+<input id="boneka2" type="number" value="0">
 </div>
-
-<div class="card">
-<h3>📈 Profit</h3>
-<input id="profit" value="30">
+<div class="product">
+<div>
+<b>Boneka 20 cm</b>
+<p>Rp30.000</p>
 </div>
-
-<button class="calc" onclick="hitung()">Hitung</button>
-
-<div class="result" id="result">Rp0</div>
+<input id="boneka3" type="number" value="0">
 </div>
+</section>
 
+<section class="card">
+<h2>⚙️ Biaya</h2>
+<div class="line"><span>Listrik</span><input id="listrik" value="5000"></div>
+<div class="line"><span>Tenaga</span><input id="tenaga" value="25000"></div>
+<div class="line"><span>Jasa</span><input id="jasa" value="50000"></div>
+</section>
+
+<section class="card">
+<h2>📈 Profit</h2>
+<div class="line"><span>Margin</span><input id="profit" value="30">%</div>
+</section>
+
+<button class="calculate" onclick="hitung()">Hitung Harga</button>
+
+<section class="summary">
+<p>Total Modal</p>
+<h2 id="modal">Rp0</h2>
+
+<p>Harga Jual</p>
+<h1 id="jual">Rp0</h1>
+</section>
+
+</div>
 <script src="app.js"></script>
-<script>
-if ('serviceWorker' in navigator) {
- navigator.serviceWorker.register('service-worker.js');
-}
-</script>
 </body>
 </html>

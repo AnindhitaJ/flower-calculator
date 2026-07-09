@@ -1,34 +1,40 @@
-let count=0;
+let counter=0;
 
-function addFlower(){
- count++;
- let d=document.createElement('div');
- d.className='flower';
- d.innerHTML=`
- <b>Bunga ${count}</b>
- <input class="qty" type="number" value="1">
- <select class="price">
- <option value="1000">Kecil 1000</option>
- <option value="3000">Sedang 3000</option>
- <option value="5000">Besar 5000</option>
- </select>`;
- document.getElementById('flowers').appendChild(d);
+function addItem(){
+counter++;
+let div=document.createElement("div");
+div.className="item";
+div.innerHTML=`
+<div class="title">🌸 Item ${counter}</div>
+<select class="harga">
+<option value="5000">Bunga Besar - 5000</option>
+<option value="3000">Bunga Sedang - 3000</option>
+<option value="1000">Bunga Kecil - 1000</option>
+<option value="3000">Cello - 3000</option>
+<option value="1000">Tissu - 1000</option>
+</select>
+<input class="qty" value="1" type="number">
+`;
+document.getElementById("items").appendChild(div);
 }
-addFlower();
+
+addItem();
 
 function hitung(){
-let total=0;
-document.querySelectorAll('.flower').forEach(f=>{
- total += Number(f.querySelector('.qty').value)*Number(f.querySelector('.price').value);
+let modal=0;
+
+document.querySelectorAll(".item").forEach(x=>{
+modal+=Number(x.querySelector(".harga").value)*Number(x.querySelector(".qty").value);
 });
 
-total += Number(bonekaQty.value)*Number(bonekaPrice.value);
-total += Number(daun.value)*1000;
-total += Number(cello.value)*3000;
-total += Number(tissu.value)*1000;
-total += Number(listrik.value)+Number(tenaga.value)+Number(jasa.value);
+modal+=Number(boneka.value)*5000;
+modal+=Number(boneka2.value)*18000;
+modal+=Number(boneka3.value)*30000;
 
-let jual=total+(total*Number(profit.value)/100);
+modal+=Number(listrik.value)+Number(tenaga.value)+Number(jasa.value);
 
-result.innerHTML=`Modal: Rp${total.toLocaleString('id-ID')}<br>Harga Jual: Rp${Math.round(jual).toLocaleString('id-ID')}`;
+let jual=modal+(modal*Number(profit.value)/100);
+
+document.getElementById("modal").innerHTML="Rp"+modal.toLocaleString("id-ID");
+document.getElementById("jual").innerHTML="Rp"+Math.round(jual).toLocaleString("id-ID");
 }
