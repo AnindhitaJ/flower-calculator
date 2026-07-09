@@ -1,9 +1,0 @@
-{
-  "name": "Bloomy Kalkulator Buket",
-  "short_name": "Bloomy",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#fff0f5",
-  "theme_color": "#c3547d",
-  "icons": []
-}
