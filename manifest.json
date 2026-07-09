@@ -1,7 +1,8 @@
 {
-"name":"Bloomy Buket",
+"name":"Bloomy Kalkulator Buket",
 "short_name":"Bloomy",
-"start_url":"index.html",
+"start_url":".",
 "display":"standalone",
-"background_color":"#fff0f5"
+"background_color":"#fff1f6",
+"theme_color":"#c3547d"
 }

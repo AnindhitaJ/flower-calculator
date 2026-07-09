@@ -10,37 +10,43 @@
 <body>
 <div class="app">
 <h1>🌷 Bloomy</h1>
-<p>Kalkulator & Menu Buket</p>
+<p>Kalkulator Buket Bunga</p>
 
 <div class="card">
-<h2>🧮 Kalkulator Buket</h2>
+<h2>Tambah Bunga</h2>
+<select id="ukuran">
+<option value="1000">Bunga Kecil - Rp1.000</option>
+<option value="3000">Bunga Sedang - Rp3.000</option>
+<option value="5000">Bunga Besar - Rp5.000</option>
+</select>
 
-<div id="items"></div>
-<button onclick="addItem()">+ Tambah Bunga</button>
+<input id="jumlah" type="number" value="1" min="1">
+<button onclick="simpanBunga()">+ Simpan Bunga</button>
 
-<h3>Total Modal</h3>
-<h2 id="modal">Rp0</h2>
-
-<label>Profit (%)</label>
-<input id="profit" value="30">
-
-<h3>Harga Jual</h3>
-<h2 id="jual">Rp0</h2>
-
-<button onclick="simpanMenu()">Masukkan ke Menu</button>
+<div id="listBunga"></div>
 </div>
 
 <div class="card">
-<h2>🌸 Buat Menu</h2>
-<input id="namaMenu" placeholder="Nama Buket">
-<input id="hargaMenu" placeholder="Harga Jual">
-
-<button onclick="buatMenu()">Simpan Menu</button>
-
-<h3>Daftar Menu</h3>
-<div id="menuList"></div>
+<h2>Boneka</h2>
+<select id="boneka">
+<option value="0">Tanpa Boneka</option>
+<option value="5000">Boneka 8 cm - Rp5.000</option>
+<option value="18000">Boneka 12 cm - Rp18.000</option>
+<option value="30000">Boneka 20 cm - Rp30.000</option>
+</select>
 </div>
 
+<div class="card">
+<h2>Biaya</h2>
+<input id="profit" value="30" placeholder="Profit %">
+<p>Listrik Rp5.000</p>
+<p>Tenaga Rp25.000</p>
+<p>Jasa Rp50.000</p>
+</div>
+
+<button onclick="hitung()">Hitung Harga</button>
+
+<div class="result" id="hasil">Rp0</div>
 </div>
 
 <script src="app.js"></script>

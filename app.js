@@ -1,50 +1,34 @@
-let data=[];
-let menus=[];
+let bunga=[];
 
-const bunga=[
-["Mawar Besar",5000],
-["Mawar Sedang",3000],
-["Mawar Kecil",1000],
-["Daisy Kecil",1000],
-["Tulip Besar",5000]
-];
+function simpanBunga(){
+let harga=Number(document.getElementById('ukuran').value);
+let jumlah=Number(document.getElementById('jumlah').value);
+bunga.push({harga,jumlah});
+render();
+}
 
-function addItem(){
-let div=document.createElement("div");
-div.className="row";
-div.innerHTML=`
-<select class="bunga">
-${bunga.map(x=>`<option value="${x[1]}">${x[0]} - ${x[1]}</option>`).join("")}
-</select>
-<input class="qty" value="1" type="number">
-`;
-document.getElementById("items").appendChild(div);
-hitung();
+function render(){
+let html="";
+bunga.forEach((b,i)=>{
+html+=`Bunga ${i+1}: ${b.jumlah} kuntum x Rp${b.harga.toLocaleString()}<br>`;
+});
+document.getElementById('listBunga').innerHTML=html;
 }
 
 function hitung(){
-let modal=0;
-document.querySelectorAll(".row").forEach(r=>{
-modal += Number(r.querySelector(".bunga").value)*Number(r.querySelector(".qty").value);
-});
+let total=0;
+bunga.forEach(b=> total+=b.harga*b.jumlah);
+total+=Number(document.getElementById('boneka').value);
+total+=5000+25000+50000;
 
-document.getElementById("modal").innerHTML="Rp"+modal.toLocaleString();
+let p=Number(document.getElementById('profit').value);
+let jual=total+(total*p/100);
 
-let p=Number(document.getElementById("profit").value);
-document.getElementById("jual").innerHTML="Rp"+Math.round(modal+(modal*p/100)).toLocaleString();
+document.getElementById('hasil').innerHTML=
+`Modal: Rp${total.toLocaleString()}<br>
+Harga Jual: Rp${Math.round(jual).toLocaleString()}`;
 }
 
-function simpanMenu(){
-alert("Masuk ke menu siap disimpan");
+if('serviceWorker' in navigator){
+navigator.serviceWorker.register('sw.js');
 }
-
-function buatMenu(){
-let n=document.getElementById("namaMenu").value;
-let h=document.getElementById("hargaMenu").value;
-
-let d=document.createElement("div");
-d.innerHTML=`🌷 ${n} - Rp${h}`;
-document.getElementById("menuList").appendChild(d);
-}
-
-addItem();
