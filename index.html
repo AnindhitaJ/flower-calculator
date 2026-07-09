@@ -1,135 +1,39 @@
 <!doctype html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bloomy</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bloomy</title><link rel="stylesheet" href="style.css"></head>
 <body>
-  <div class="app">
-    <header class="hero">
-      <h1>🌷 Bloomy</h1>
-      <p>Kalkulator Modal Buket</p>
-    </header>
+<div class="app">
+<h1>🌷 Bloomy</h1>
+<p>Kalkulator Modal Buket</p>
 
-    <section class="card">
-      <div class="section-head">
-        <h2>💐 Bunga</h2>
-      </div>
-      <div id="flowers"></div>
-      <button class="secondary-btn" onclick="addFlower()">+ Tambah Bunga</button>
-    </section>
+<div class="card">
+<h2>💐 Bunga</h2>
+<div id="flowers"></div>
+<button onclick="addFlower()">+ Tambah Bunga</button>
+</div>
 
-    <section class="card pink-card">
-      <div class="section-head">
-        <h2>🧸 Boneka</h2>
-      </div>
+<div class="card">
+<h2>🎀 Packaging</h2>
+<div class="row"><span>Cellophane</span><input class="qty" id="cq" value="0"><input class="nominal" id="cp" value="3000"></div>
+<div class="row"><span>Pita</span><input class="qty" id="pq" value="0"><input class="nominal" id="pp" value="2000"></div>
+<div class="row"><span>Daun</span><input class="qty" id="dq" value="0"><input class="nominal" id="dp" value="1000"></div>
+<div class="row"><span>Paper Bag</span><input class="qty" id="pbq" value="0"><input class="nominal" id="pbp" value="10000"></div>
+</div>
 
-      <div id="bonekaWrap">
-        <div class="pink-item">
-          <div class="item-title">Boneka 8 cm</div>
-          <div class="field-label">Jumlah</div>
-          <input class="qty" id="b8q" type="number" min="0" value="0">
-          <div class="field-label">Harga</div>
-          <input class="harga" id="b8p" type="text" value="5000">
-        </div>
+<div class="card">
+<h2>⚙️ Biaya</h2>
+<div class="row"><span>Listrik</span><input class="nominal" id="listrik" value="5000"></div>
+<div class="row"><span>Tenaga</span><input class="nominal" id="tenaga" value="25000"></div>
+<div class="row"><span>Jasa</span><input class="nominal" id="jasa" value="50000"></div>
+</div>
 
-        <div class="pink-item">
-          <div class="item-title">Boneka 12 cm</div>
-          <div class="field-label">Jumlah</div>
-          <input class="qty" id="b12q" type="number" min="0" value="0">
-          <div class="field-label">Harga</div>
-          <input class="harga" id="b12p" type="text" value="18000">
-        </div>
+<div class="card">
+<h2>📈 Profit</h2>
+<input id="profit" value="30"> %
+</div>
 
-        <div class="pink-item">
-          <div class="item-title">Boneka 20 cm</div>
-          <div class="field-label">Jumlah</div>
-          <input class="qty" id="b20q" type="number" min="0" value="0">
-          <div class="field-label">Harga</div>
-          <input class="harga" id="b20p" type="text" value="30000">
-        </div>
-      </div>
-    </section>
+<button class="main" onclick="hitung()">Hitung Harga Jual</button>
 
-    <section class="card pink-card">
-      <div class="section-head">
-        <h2>🎀 Packaging</h2>
-      </div>
-
-      <div class="pink-item">
-        <div class="item-title">Cellophane</div>
-        <div class="field-label">Jumlah</div>
-        <input class="qty" id="cq" type="number" min="0" value="0">
-        <div class="field-label">Harga</div>
-        <input class="harga" id="cp" type="text" value="3000">
-      </div>
-
-      <div class="pink-item">
-        <div class="item-title">Pita</div>
-        <div class="field-label">Jumlah</div>
-        <input class="qty" id="pq" type="number" min="0" value="0">
-        <div class="field-label">Harga</div>
-        <input class="harga" id="pp" type="text" value="2000">
-      </div>
-
-      <div class="pink-item">
-        <div class="item-title">Daun</div>
-        <div class="field-label">Jumlah</div>
-        <input class="qty" id="dq" type="number" min="0" value="0">
-        <div class="field-label">Harga</div>
-        <input class="harga" id="dp" type="text" value="1000">
-      </div>
-
-      <div class="pink-item">
-        <div class="item-title">Paper Bag / Plastik Pembungkus</div>
-        <div class="field-label">Jumlah</div>
-        <input class="qty" id="pbq" type="number" min="0" value="0">
-        <div class="field-label">Harga</div>
-        <input class="harga" id="pbp" type="text" value="10000">
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="section-head">
-        <h2>⚙️ Biaya</h2>
-      </div>
-      <div class="cost-row">
-        <span>⚡ Listrik</span>
-        <input class="harga" id="listrik" type="text" value="5000">
-      </div>
-      <div class="cost-row">
-        <span>👩 Tenaga</span>
-        <input class="harga" id="tenaga" type="text" value="25000">
-      </div>
-      <div class="cost-row">
-        <span>✨ Jasa</span>
-        <input class="harga" id="jasa" type="text" value="50000">
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="section-head">
-        <h2>📈 Profit</h2>
-      </div>
-      <div class="profit-box">
-        <input id="profit" type="number" min="0" value="30">
-        <span>%</span>
-      </div>
-    </section>
-
-    <button class="main-btn" onclick="hitung()">Hitung Harga Jual</button>
-
-    <section class="result" id="hasil">
-      <div class="result-label">Total Modal</div>
-      <div class="result-value">Rp0</div>
-      <div class="result-separator"></div>
-      <div class="result-label">Harga Jual</div>
-      <div class="result-value accent">Rp0</div>
-    </section>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<div class="result" id="hasil">Rp0</div>
+</div>
+<script src="app.js"></script>
+</body></html>
