@@ -3,68 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bloomy</title>
+<title>Bloomy Fix</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
-
-<header class="hero">
-<div class="logo">🌷</div>
-<h1>Bloomy</h1>
-<p>Kalkulator Buket</p>
-</header>
+<header><h1>🌷 Bloomy</h1><p>Kalkulator Buket</p></header>
 
 <div class="summary">
-<p>Total Modal</p>
+Total Modal
 <h2 id="modal">Rp0</h2>
-<p>Harga Jual</p>
+Harga Jual
 <h1 id="jual">Rp0</h1>
 </div>
 
 <section class="card">
 <h2>💐 Bunga</h2>
 <div id="flowers"></div>
-<button onclick="addFlower()">＋ Tambah Bunga</button>
+<button onclick="addFlower()">+ Tambah Bunga</button>
 </section>
 
-<section class="card pink">
+<section class="card">
 <h2>🧸 Boneka</h2>
 <div id="boneka"></div>
 </section>
 
-<section class="card pink">
+<section class="card">
 <h2>🎀 Packaging</h2>
-<div id="package"></div>
+<div id="packaging"></div>
 </section>
 
-<section class="card pink">
+<section class="card">
 <h2>🍫 Snack</h2>
-<div class="item">
 <label>Nama Snack</label>
 <input id="snackName" placeholder="Contoh: SilverQueen">
 <label>Jumlah</label>
 <input id="snackQty" value="0">
 <label>Harga</label>
 <input class="harga" id="snackPrice" placeholder="Rp10.000">
-</div>
 </section>
 
 <section class="card">
 <h2>⚙️ Biaya</h2>
-<div class="item">⚡ Listrik<input class="harga" id="listrik" value="5000"></div>
-<div class="item">👩 Tenaga<input class="harga" id="tenaga" value="25000"></div>
-<div class="item">✨ Jasa<input class="harga" id="jasa" value="50000"></div>
+<input class="harga" id="listrik" value="5000" placeholder="Listrik">
+<input class="harga" id="tenaga" value="25000" placeholder="Tenaga">
+<input class="harga" id="jasa" value="50000" placeholder="Jasa">
 </section>
 
 <section class="card">
 <h2>📈 Profit</h2>
-<input id="profit" value="30" placeholder="Persentase profit">
+<input id="profit" value="30">
 </section>
 
 <button class="main" onclick="hitung()">Hitung Harga Jual</button>
-
 </div>
+
 <script src="app.js"></script>
 </body>
 </html>
