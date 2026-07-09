@@ -1,9 +1,32 @@
-
-body{font-family:Arial;background:#fff1f6;padding:20px}
-.app{max-width:600px;margin:auto}
-.card{background:white;padding:20px;border-radius:20px;margin-bottom:15px;box-shadow:0 5px 20px #ddd}
-h1{text-align:center;color:#c05078}
-input,select,button{padding:12px;border-radius:10px;border:1px solid #ddd;margin:5px;width:100%}
-button{background:#d47799;color:white;border:0}
-.item{display:grid;grid-template-columns:1fr 80px 100px;gap:5px}
-.box{background:#fff5f8;padding:12px;border-radius:10px;margin:8px 0}
+body{
+font-family:Arial;
+background:#fff0f5;
+padding:20px
+}
+.app{
+max-width:500px;
+margin:auto
+}
+.card{
+background:white;
+padding:20px;
+margin:15px 0;
+border-radius:20px;
+box-shadow:0 5px 20px #ddd
+}
+input,select,button{
+width:100%;
+padding:12px;
+margin:6px 0;
+border-radius:12px;
+border:1px solid #ddd
+}
+button{
+background:#d56b91;
+color:white;
+border:0
+}
+.row{
+display:flex;
+gap:10px
+}

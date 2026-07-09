@@ -2,45 +2,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bloomy Builder Buket</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloomy PWA</title>
+<link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 <div class="app">
-<h1>🌷 Bloomy Buket Builder</h1>
+<h1>🌷 Bloomy</h1>
+<p>Kalkulator & Menu Buket</p>
 
 <div class="card">
-<h2>Session Menu</h2>
-<input id="sessionName" placeholder="Nama koleksi buket">
-<button onclick="buatSession()">Buat Session</button>
-<select id="sessionList" onchange="loadSession()"></select>
-</div>
+<h2>🧮 Kalkulator Buket</h2>
 
-<div class="card">
-<h2>Buat Buket</h2>
-<input id="namaBuket" placeholder="Nama Buket">
-
-<h3>Isi Bunga</h3>
 <div id="items"></div>
-<button onclick="addItem()">+ Tambah Komponen</button>
+<button onclick="addItem()">+ Tambah Bunga</button>
 
-<div class="row">
-<label>Harga Jual</label>
-<input id="hargaJual" type="number" value="0">
-</div>
+<h3>Total Modal</h3>
+<h2 id="modal">Rp0</h2>
 
-<button onclick="simpanBuket()">Simpan Buket</button>
+<label>Profit (%)</label>
+<input id="profit" value="30">
+
+<h3>Harga Jual</h3>
+<h2 id="jual">Rp0</h2>
+
+<button onclick="simpanMenu()">Masukkan ke Menu</button>
 </div>
 
 <div class="card">
-<h2>Daftar Buket</h2>
-<div id="listBuket"></div>
-<button onclick="pdfPrice()">Download PDF Pricelist</button>
-<button onclick="pdfBreak()">Download PDF Breakdown</button>
+<h2>🌸 Buat Menu</h2>
+<input id="namaMenu" placeholder="Nama Buket">
+<input id="hargaMenu" placeholder="Harga Jual">
+
+<button onclick="buatMenu()">Simpan Menu</button>
+
+<h3>Daftar Menu</h3>
+<div id="menuList"></div>
 </div>
 
 </div>
-<script src="script.js"></script>
+
+<script src="app.js"></script>
 </body>
 </html>
