@@ -1,66 +1,23 @@
-let flowerCount = 0;
-
-function createFlowerPriceOptions() {
-  const prices = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
-  return prices.map(price => `<option value="${price}">Rp${price.toLocaleString('id-ID')}</option>`).join("");
+let count=0;
+function addFlower(){
+count++;
+let d=document.createElement('div');
+d.className='flower';
+d.innerHTML=`🌸 Bunga ${count}<input class="qty" value="1"><select class="nominal"><option value="1000">Rp1.000</option><option value="5000">Rp5.000</option><option value="10000">Rp10.000</option></select>`;
+flowers.appendChild(d);
+document.querySelectorAll('.nominal').forEach(format);
 }
-
-function addFlower() {
-  flowerCount++;
-  const flower = document.createElement("div");
-  flower.className = "flower";
-  flower.innerHTML = `
-    <div class="flower-title">🌸 Bunga ${flowerCount}</div>
-    <div class="flower-grid">
-      <input class="qty" type="number" min="0" value="1" placeholder="Jumlah" />
-      <select class="price">
-        ${createFlowerPriceOptions()}
-      </select>
-    </div>
-  `;
-  document.getElementById("flowers").appendChild(flower);
+function format(el){
+el.addEventListener('input',()=>{let x=el.value.replace(/\D/g,'');el.value=x?Number(x).toLocaleString('id-ID'):''})
 }
-
-function valueOf(id) {
-  return Number(document.getElementById(id).value || 0);
-}
-
-function rupiah(x) {
-  return "Rp" + Math.round(x).toLocaleString("id-ID");
-}
-
-function hitung() {
-  let modal = 0;
-
-  document.querySelectorAll(".flower").forEach(flower => {
-    const qty = Number(flower.querySelector(".qty").value || 0);
-    const price = Number(flower.querySelector(".price").value || 0);
-    modal += qty * price;
-  });
-
-  [
-    ["b8q","b8p"], ["b12q","b12p"], ["b20q","b20p"],
-    ["cq","cp"], ["pq","pp"], ["dq","dp"], ["plq","plp"], ["pbq","pbp"]
-  ].forEach(([qtyId, priceId]) => {
-    modal += valueOf(qtyId) * valueOf(priceId);
-  });
-
-  modal += valueOf("listrik") + valueOf("tenaga") + valueOf("jasa");
-
-  const hargaJual = modal + (modal * valueOf("profit") / 100);
-
-  document.getElementById("hasil").innerHTML = `
-    <div class="summary-block">
-      <div class="label">Total Modal</div>
-      <div class="value">${rupiah(modal)}</div>
-    </div>
-    <div class="divider"></div>
-    <div class="summary-block">
-      <div class="label">Harga Jual</div>
-      <div class="value accent">${rupiah(hargaJual)}</div>
-    </div>
-  `;
-}
-
+document.querySelectorAll('.nominal').forEach(format);
 addFlower();
-hitung();
+function n(id){return Number(document.getElementById(id).value.replace(/\./g,''))||0}
+function hitung(){
+let total=0;
+document.querySelectorAll('.flower').forEach(x=>total+=Number(x.querySelector('.qty').value)*Number(x.querySelector('.nominal').value));
+[['b8q','b8p'],['b12q','b12p'],['b20q','b20p'],['cq','cp'],['pq','pp'],['dq','dp'],['pbq','pbp']].forEach(x=>total+=n(x[0])*n(x[1]));
+total+=n('listrik')+n('tenaga')+n('jasa');
+let jual=total+(total*n('profit')/100);
+hasil.innerHTML='Modal<br><b>Rp'+total.toLocaleString('id-ID')+'</b><br><br>Harga Jual<br><b>Rp'+Math.round(jual).toLocaleString('id-ID')+'</b>';
+}

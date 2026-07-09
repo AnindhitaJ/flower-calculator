@@ -1,113 +1,55 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloomy</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bloomy</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>🌷 Bloomy</h1>
-      <p>Kalkulator Modal Buket</p>
-    </header>
+<div class="app">
+<div class="header">
+<h1>🌷 Bloomy</h1>
+<p>Kalkulator Modal Buket</p>
+</div>
 
-    <section class="card">
-      <h2>💐 Bunga</h2>
-      <div id="flowers"></div>
-      <button class="secondary-btn" onclick="addFlower()">+ Tambah Bunga</button>
-    </section>
+<div class="card">
+<h2>💐 Bunga</h2>
+<div id="flowers"></div>
+<button onclick="addFlower()">+ Tambah Bunga</button>
+</div>
 
-    <section class="card">
-      <h2>🧸 Boneka</h2>
-      <div class="triple-row">
-        <span>Boneka 8 cm</span>
-        <input id="b8q" type="number" value="0" min="0" />
-        <input id="b8p" type="number" value="5000" min="0" />
-      </div>
-      <div class="triple-row">
-        <span>Boneka 12 cm</span>
-        <input id="b12q" type="number" value="0" min="0" />
-        <input id="b12p" type="number" value="18000" min="0" />
-      </div>
-      <div class="triple-row">
-        <span>Boneka 20 cm</span>
-        <input id="b20q" type="number" value="0" min="0" />
-        <input id="b20p" type="number" value="30000" min="0" />
-      </div>
-      <div class="row-hint">Format: jumlah | harga</div>
-    </section>
+<div class="card">
+<h2>🧸 Boneka</h2>
+<div class="item"><span>Boneka 8 cm</span><input class="qty" id="b8q" value="0"><input class="nominal" id="b8p" value="5000"></div>
+<div class="item"><span>Boneka 12 cm</span><input class="qty" id="b12q" value="0"><input class="nominal" id="b12p" value="18000"></div>
+<div class="item"><span>Boneka 20 cm</span><input class="qty" id="b20q" value="0"><input class="nominal" id="b20p" value="30000"></div>
+</div>
 
-    <section class="card">
-      <h2>🎀 Packaging</h2>
-      <div class="triple-row">
-        <span>Cellophane</span>
-        <input id="cq" type="number" value="0" min="0" />
-        <input id="cp" type="number" value="3000" min="0" />
-      </div>
-      <div class="triple-row">
-        <span>Pita</span>
-        <input id="pq" type="number" value="0" min="0" />
-        <input id="pp" type="number" value="2000" min="0" />
-      </div>
-      <div class="triple-row">
-        <span>Daun</span>
-        <input id="dq" type="number" value="0" min="0" />
-        <input id="dp" type="number" value="1000" min="0" />
-      </div>
-      <div class="triple-row">
-        <span>Plastik</span>
-        <input id="plq" type="number" value="0" min="0" />
-        <input id="plp" type="number" value="3000" min="0" />
-      </div>
-      <div class="triple-row">
-        <span>Paper Bag</span>
-        <input id="pbq" type="number" value="0" min="0" />
-        <input id="pbp" type="number" value="10000" min="0" />
-      </div>
-      <div class="row-hint">Format: jumlah | harga</div>
-    </section>
+<div class="card">
+<h2>🎀 Packaging</h2>
+<div class="item"><span>Cellophane</span><input class="qty" id="cq" value="0"><input class="nominal" id="cp" value="3000"></div>
+<div class="item"><span>Pita</span><input class="qty" id="pq" value="0"><input class="nominal" id="pp" value="2000"></div>
+<div class="item"><span>Daun</span><input class="qty" id="dq" value="0"><input class="nominal" id="dp" value="1000"></div>
+<div class="item"><span>Paper Bag</span><input class="qty" id="pbq" value="0"><input class="nominal" id="pbp" value="10000"></div>
+</div>
 
-    <section class="card">
-      <h2>⚙️ Biaya</h2>
-      <div class="double-row">
-        <span>⚡ Listrik</span>
-        <input id="listrik" type="number" value="5000" min="0" />
-      </div>
-      <div class="double-row">
-        <span>👩 Tenaga</span>
-        <input id="tenaga" type="number" value="25000" min="0" />
-      </div>
-      <div class="double-row">
-        <span>✨ Jasa</span>
-        <input id="jasa" type="number" value="50000" min="0" />
-      </div>
-    </section>
+<div class="card">
+<h2>⚙️ Biaya</h2>
+<div class="item"><span>Listrik</span><input class="nominal" id="listrik" value="5000"></div>
+<div class="item"><span>Tenaga</span><input class="nominal" id="tenaga" value="25000"></div>
+<div class="item"><span>Jasa</span><input class="nominal" id="jasa" value="50000"></div>
+</div>
 
-    <section class="card">
-      <h2>📈 Profit</h2>
-      <div class="double-row">
-        <span>Profit (%)</span>
-        <input id="profit" type="number" value="30" min="0" />
-      </div>
-    </section>
+<div class="card">
+<h2>📈 Profit</h2>
+<input id="profit" value="30"> %
+</div>
 
-    <button class="main-btn" onclick="hitung()">Hitung Harga Jual</button>
+<button class="main" onclick="hitung()">Hitung Harga Jual</button>
+<div class="result" id="hasil">Rp0</div>
+</div>
 
-    <section class="summary" id="hasil">
-      <div class="summary-block">
-        <div class="label">Total Modal</div>
-        <div class="value">Rp0</div>
-      </div>
-      <div class="divider"></div>
-      <div class="summary-block">
-        <div class="label">Harga Jual</div>
-        <div class="value accent">Rp0</div>
-      </div>
-    </section>
-  </div>
-
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
