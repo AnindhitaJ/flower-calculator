@@ -1,34 +1,34 @@
-let bunga=[];
+let count=0;
 
-function simpanBunga(){
-let harga=Number(document.getElementById('ukuran').value);
-let jumlah=Number(document.getElementById('jumlah').value);
-bunga.push({harga,jumlah});
-render();
+function addFlower(){
+ count++;
+ let d=document.createElement('div');
+ d.className='flower';
+ d.innerHTML=`
+ <b>Bunga ${count}</b>
+ <input class="qty" type="number" value="1">
+ <select class="price">
+ <option value="1000">Kecil 1000</option>
+ <option value="3000">Sedang 3000</option>
+ <option value="5000">Besar 5000</option>
+ </select>`;
+ document.getElementById('flowers').appendChild(d);
 }
-
-function render(){
-let html="";
-bunga.forEach((b,i)=>{
-html+=`Bunga ${i+1}: ${b.jumlah} kuntum x Rp${b.harga.toLocaleString()}<br>`;
-});
-document.getElementById('listBunga').innerHTML=html;
-}
+addFlower();
 
 function hitung(){
 let total=0;
-bunga.forEach(b=> total+=b.harga*b.jumlah);
-total+=Number(document.getElementById('boneka').value);
-total+=5000+25000+50000;
+document.querySelectorAll('.flower').forEach(f=>{
+ total += Number(f.querySelector('.qty').value)*Number(f.querySelector('.price').value);
+});
 
-let p=Number(document.getElementById('profit').value);
-let jual=total+(total*p/100);
+total += Number(bonekaQty.value)*Number(bonekaPrice.value);
+total += Number(daun.value)*1000;
+total += Number(cello.value)*3000;
+total += Number(tissu.value)*1000;
+total += Number(listrik.value)+Number(tenaga.value)+Number(jasa.value);
 
-document.getElementById('hasil').innerHTML=
-`Modal: Rp${total.toLocaleString()}<br>
-Harga Jual: Rp${Math.round(jual).toLocaleString()}`;
-}
+let jual=total+(total*Number(profit.value)/100);
 
-if('serviceWorker' in navigator){
-navigator.serviceWorker.register('sw.js');
+result.innerHTML=`Modal: Rp${total.toLocaleString('id-ID')}<br>Harga Jual: Rp${Math.round(jual).toLocaleString('id-ID')}`;
 }
