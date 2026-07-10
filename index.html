@@ -4,50 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bloomy</title>
+<link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
 
-<header>
+<header class="hero">
 <h1>🌷 Bloomy</h1>
-<p>Kalkulator Modal Buket</p>
+<p>Kalkulator Buket</p>
 </header>
 
 <div class="card">
 <h2>💐 Bunga</h2>
-<div id="flower"></div>
+<div id="flowers"></div>
 <button onclick="addFlower()">+ Tambah Bunga</button>
 </div>
 
-<div class="card pink">
-<h2>🧸 Boneka</h2>
-<div id="boneka"></div>
-</div>
+<div class="card pink"><h2>🧸 Boneka</h2><div id="boneka"></div></div>
 
-<div class="card pink">
-<h2>🎀 Packaging</h2>
-<div id="pack"></div>
-</div>
+<div class="card pink"><h2>🎀 Packaging</h2><div id="packaging"></div></div>
 
 <div class="card pink">
 <h2>🍫 Snack</h2>
 <label>Nama Snack</label>
 <input id="snackName" placeholder="Contoh: SilverQueen">
 <label>Jumlah</label>
-<input id="snackQty" value="0">
+<input id="snackQty" type="number" value="0">
 <label>Harga</label>
 <input class="harga" id="snackPrice" placeholder="Rp10.000">
 </div>
 
+<div class="card pink">
+<h2>💵 Slot Uang</h2>
+<select id="moneySlot">
+<option value="0">Pilih slot uang</option>
+<option value="25000">5 lembar - Rp25.000</option>
+<option value="35000">6-10 lembar - Rp35.000</option>
+<option value="45000">11-15 lembar - Rp45.000</option>
+<option value="55000">16-20 lembar - Rp55.000</option>
+<option value="65000">21-25 lembar - Rp65.000</option>
+<option value="75000">26-30 lembar - Rp75.000</option>
+<option value="85000">31-35 lembar - Rp85.000</option>
+<option value="95000">36-40 lembar - Rp95.000</option>
+<option value="105000">41-45 lembar - Rp105.000</option>
+<option value="115000">46-50 lembar - Rp115.000</option>
+<option value="125000">51-55 lembar - Rp125.000</option>
+<option value="135000">56-60 lembar - Rp135.000</option>
+<option value="145000">61-65 lembar - Rp145.000</option>
+<option value="155000">66-70 lembar - Rp155.000</option>
+<option value="165000">71-75 lembar - Rp165.000</option>
+<option value="175000">76-80 lembar - Rp175.000</option>
+<option value="185000">81-85 lembar - Rp185.000</option>
+<option value="195000">86-90 lembar - Rp195.000</option>
+<option value="205000">91-95 lembar - Rp205.000</option>
+<option value="215000">96-100 lembar - Rp215.000</option>
+</select>
+</div>
+
 <div class="card">
 <h2>⚙️ Biaya</h2>
-<label>⚡ Listrik</label>
-<input class="harga" id="listrik" value="5000">
-<label>👩 Tenaga</label>
-<input class="harga" id="tenaga" value="25000">
-<label>✨ Jasa</label>
-<input class="harga" id="jasa" value="50000">
+<label>Listrik</label><input class="harga" id="listrik" value="5000">
+<label>Tenaga</label><input class="harga" id="tenaga" value="25000">
+<label>Jasa</label><input class="harga" id="jasa" value="50000">
 </div>
 
 <div class="card">
@@ -58,8 +77,9 @@
 
 <button class="main" onclick="hitung()">Hitung Harga Jual</button>
 
-<div class="card result" id="hasil">
-Total Modal<br>Rp0<br><br>Harga Jual<br>Rp0
+<div class="card result" id="result">
+Total Modal<br>Rp0<br><br>
+Harga Jual<br>Rp0
 </div>
 
 </div>
