@@ -1,20 +1,36 @@
 <!doctype html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bloomy</title>
+<title>Bloomy — Kalkulator Buket</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#bd527c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
-<header><h1>🌷 Bloomy</h1><p>Kalkulator Buket</p></header>
 
-<div id="app"></div>
+  <header class="app-header">
+    <div class="header-blob" aria-hidden="true"></div>
+    <h1>🌷 Bloomy</h1>
+    <p>Kalkulator harga buket &amp; hampers kamu</p>
+  </header>
 
-<button onclick="calculate()">Hitung Harga Jual</button>
-<div class="result" id="result">Total Modal<br>Rp0<br><br>Harga Jual<br>Rp0</div>
+  <main id="app"></main>
+
+  <div class="cta-spacer"></div>
 </div>
+
+<div class="cta-bar">
+  <button class="calc-btn" onclick="calculate()">
+    <span>Hitung Harga Jual</span>
+  </button>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>
