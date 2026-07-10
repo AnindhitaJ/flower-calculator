@@ -1,26 +1,20 @@
 <!doctype html>
-<html><head>
+<html>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
 <title>Bloomy</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
 <header><h1>🌷 Bloomy</h1><p>Kalkulator Buket</p></header>
 
-<div id="sections"></div>
+<div id="app"></div>
 
-<button id="calculate">Hitung Harga Jual</button>
-
-<div class="result">
-<h3>Total Modal</h3>
-<h1 id="modal">Rp0</h1>
-<h3>Harga Jual</h3>
-<h1 id="jual">Rp0</h1>
+<button onclick="calculate()">Hitung Harga Jual</button>
+<div class="result" id="result">Total Modal<br>Rp0<br><br>Harga Jual<br>Rp0</div>
 </div>
-</div>
-
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
