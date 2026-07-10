@@ -261,7 +261,10 @@ function calculate(){
     existing = document.createElement('div');
     existing.className = 'result';
     existing.id = 'result';
-    document.querySelector('.app').appendChild(existing);
+    // append inside #app (main), so it lands right after the last
+    // section — not inside the outer .app wrapper, which would put it
+    // after the sticky-button spacer and create a big empty gap.
+    app.appendChild(existing);
   }
 
   existing.innerHTML = `
