@@ -60,7 +60,7 @@ function addFlowerRow(price = 1000, qty = 1){
   row.dataset.rowId = rowCounter;
   row.innerHTML = `
     <select class="flower-price">${flowerPriceOptions(price)}</select>
-    <input type="number" class="qty-input flower-qty" min="1" value="${qty}" inputmode="numeric">
+    <input type="number" class="qty-input flower-qty" min="1" value="${qty}" inputmode="numeric" data-min="1">
     <button type="button" class="remove-btn" aria-label="Hapus bunga ini">✕</button>
   `;
   document.getElementById('flowerRows').appendChild(row);
@@ -93,7 +93,7 @@ function addBonekaRow(type = 5000, qty = 1){
   row.dataset.rowId = rowCounter;
   row.innerHTML = `
     <select class="boneka-type">${bonekaOptionsHTML(type)}</select>
-    <input type="number" class="qty-input boneka-qty" min="1" value="${qty}" inputmode="numeric">
+    <input type="number" class="qty-input boneka-qty" min="1" value="${qty}" inputmode="numeric" data-min="1">
     <button type="button" class="remove-btn" aria-label="Hapus boneka ini">✕</button>
   `;
   const list = document.getElementById('bonekaRows');
@@ -122,6 +122,45 @@ function renderBonekaSection(){
   });
 }
 
+/* ---------- Tambahan Lain (free-form extra items, optional) ---------- */
+
+function addExtraRow(name = '', price = '', qty = 1){
+  rowCounter++;
+  const row = document.createElement('div');
+  row.className = 'item-row item-row-extra';
+  row.dataset.rowId = rowCounter;
+  row.innerHTML = `
+    <input type="text" class="extra-name" placeholder="cth: Vas bunga" value="${name}">
+    <input type="text" class="money extra-price" placeholder="Harga" value="${price}" inputmode="numeric">
+    <input type="number" class="qty-input extra-qty" min="1" value="${qty}" inputmode="numeric" data-min="1">
+    <button type="button" class="remove-btn" aria-label="Hapus item ini">✕</button>
+  `;
+  const list = document.getElementById('extraRows');
+  const hint = document.getElementById('extraEmptyHint');
+  if(hint) hint.remove();
+  list.appendChild(row);
+}
+
+function renderExtraSection(){
+  section('extra-section', '✨', 'Tambahan Lain', 'Opsional. Buat vas, kartu ucapan, atau item lain di luar daftar — isi nama & harganya sendiri.', `
+    <div class="row-list" id="extraRows">
+      <p class="empty-hint" id="extraEmptyHint">Belum ada item tambahan</p>
+    </div>
+    <button type="button" class="add-row-btn" id="addExtraBtn">＋ Tambah Item</button>
+  `);
+
+  document.getElementById('addExtraBtn').addEventListener('click', () => addExtraRow());
+  document.getElementById('extraRows').addEventListener('click', (e) => {
+    if(e.target.classList.contains('remove-btn')){
+      e.target.closest('.item-row').remove();
+      const list = document.getElementById('extraRows');
+      if(!list.querySelector('.item-row')){
+        list.innerHTML = '<p class="empty-hint" id="extraEmptyHint">Belum ada item tambahan</p>';
+      }
+    }
+  });
+}
+
 /* ---------- Packaging ---------- */
 
 function renderPackagingSection(){
@@ -144,7 +183,7 @@ function renderSnackSection(){
     <label>Nama Snack</label>
     <input id="snackName" placeholder="cth: Silverqueen">
     <div class="grid-2">
-      <div><label>Jumlah</label><input class="qty-input" id="snackQty" value="0" inputmode="numeric"></div>
+      <div><label>Jumlah</label><input class="qty-input" id="snackQty" value="0" inputmode="numeric" data-min="0"></div>
       <div><label>Harga Satuan</label><input class="money" id="snackPrice" value="0" inputmode="numeric"></div>
     </div>
   `);
@@ -186,7 +225,14 @@ function renderCostSection(){
 function renderProfitSection(){
   section('profit-section', '📈', 'Profit', '', `
     <label>Persentase Profit (%)</label>
-    <input id="profit" value="30" inputmode="numeric">
+    <input id="profit" class="numeric-input" value="30" inputmode="numeric" data-min="0">
+  `);
+}
+
+function renderOrderQtySection(){
+  section('order-qty-section', '📦', 'Jumlah Pesanan', 'Kalau bikin beberapa buket yang sama persis, isi jumlahnya di sini — total pesanan otomatis ikut dihitung.', `
+    <label>Jumlah Buket</label>
+    <input id="orderQty" class="numeric-input" value="1" inputmode="numeric" data-min="1">
   `);
 }
 
@@ -194,16 +240,37 @@ function renderProfitSection(){
 
 renderBungaSection();
 renderBonekaSection();
+renderExtraSection();
 renderPackagingSection();
 renderSnackSection();
 renderMoneySlotSection();
 renderCostSection();
 renderProfitSection();
+renderOrderQtySection();
 
 // live thousand-separator formatting for money inputs (delegated, since some are static)
 app.addEventListener('input', (e) => {
   if(e.target.classList.contains('money')){
     formatMoneyInput(e.target);
+  }
+  if(e.target.classList.contains('qty-input') || e.target.classList.contains('numeric-input')){
+    // strip anything that isn't a digit as the person types (blocks
+    // letters and the minus sign in real time; final min-value check
+    // happens on blur so the field isn't force-corrected mid-type)
+    const digits = e.target.value.replace(/[^\d]/g, '');
+    if(digits !== e.target.value) e.target.value = digits;
+  }
+});
+
+// clamp to each field's data-min once the person leaves it (focusout
+// bubbles, unlike blur, so one delegated listener covers every row —
+// including rows added later dynamically)
+app.addEventListener('focusout', (e) => {
+  if(e.target.classList.contains('qty-input') || e.target.classList.contains('numeric-input')){
+    const min = Number(e.target.dataset.min ?? 0);
+    let val = parseInt(e.target.value, 10);
+    if(isNaN(val) || val < min) val = min;
+    e.target.value = val;
   }
 });
 
@@ -229,9 +296,27 @@ function sumBonekaRows(){
   return total;
 }
 
+function sumExtraRows(){
+  // returns both the total and a per-item breakdown (each item keeps
+  // its own custom name, unlike the other categories which are summed
+  // into one line)
+  let total = 0;
+  const items = [];
+  document.querySelectorAll('#extraRows .item-row-extra').forEach(row => {
+    const name = row.querySelector('.extra-name').value.trim() || 'Item tambahan';
+    const price = moneyValue(row.querySelector('.extra-price'));
+    const qty = Number(row.querySelector('.extra-qty').value) || 0;
+    const lineTotal = price * qty;
+    total += lineTotal;
+    if(lineTotal > 0) items.push([`✨ ${name}`, lineTotal]);
+  });
+  return { total, items };
+}
+
 function calculate(){
   const bunga = sumFlowerRows();
   const boneka = sumBonekaRows();
+  const extra = sumExtraRows();
   const packaging = moneyValue(document.getElementById('cell'))
     + moneyValue(document.getElementById('ribbon'))
     + moneyValue(document.getElementById('leaf'))
@@ -242,14 +327,19 @@ function calculate(){
   const cost = moneyValue(document.getElementById('electric'))
     + moneyValue(document.getElementById('worker'));
 
-  const modal = bunga + boneka + packaging + snack + moneySlot + cost;
+  const modal = bunga + boneka + extra.total + packaging + snack + moneySlot + cost;
   const profitPct = Number(document.getElementById('profit').value) || 0;
   const profitAmount = modal * profitPct / 100;
   const jual = modal + profitAmount;
 
+  const orderQty = Math.max(1, Number(document.getElementById('orderQty').value) || 1);
+  const modalTotal = modal * orderQty;
+  const jualTotal = jual * orderQty;
+
   const breakdown = [
     ['💐 Bunga', bunga],
     ['🧸 Boneka', boneka],
+    ...extra.items,
     ['🎀 Packaging', packaging],
     ['🍫 Snack', snack],
     ['💵 Slot Uang', moneySlot],
@@ -268,7 +358,7 @@ function calculate(){
   }
 
   existing.innerHTML = `
-    <h2>Ringkasan Perhitungan</h2>
+    <h2>Ringkasan Perhitungan ${orderQty > 1 ? `<span class="per-unit-tag">per buket</span>` : ''}</h2>
     <div class="breakdown">
       ${breakdown.map(r => `<div class="breakdown-row"><span>${r[0]}</span><span>${rupiah(r[1])}</span></div>`).join('') || '<div class="breakdown-row"><span>Belum ada item</span><span>Rp0</span></div>'}
     </div>
@@ -283,6 +373,20 @@ function calculate(){
       </div>
     </div>
     <div class="profit-tag">+ Profit ${profitPct}% = ${rupiah(profitAmount)}</div>
+    ${orderQty > 1 ? `
+    <div class="order-total">
+      <div class="order-total-head">📦 Total ${orderQty} Buket</div>
+      <div class="result-totals">
+        <div class="total-box">
+          <div class="lbl">Total Modal</div>
+          <b>${rupiah(modalTotal)}</b>
+        </div>
+        <div class="total-box jual">
+          <div class="lbl">Total Harga Jual</div>
+          <b>${rupiah(jualTotal)}</b>
+        </div>
+      </div>
+    </div>` : ''}
   `;
   existing.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }

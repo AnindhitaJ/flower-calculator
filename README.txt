@@ -17,3 +17,15 @@ Fitur:
   di HP sambil scroll.
 - UI dirapikan: kartu section lebih rapi, warna & tipografi konsisten,
   animasi halus saat menambah/menghapus baris.
+
+Update terbaru:
+- Tambahan Lain (opsional): section baru untuk item bebas seperti vas
+  bunga, kartu ucapan, dll — isi nama & harga sendiri, bisa lebih dari
+  satu, dan muncul di rincian hasil dengan nama masing-masing.
+- Jumlah Pesanan: input jumlah buket kalau bikin beberapa buket yang
+  sama persis. Hasil akan menampilkan harga per buket sekaligus total
+  keseluruhan pesanan (Total Modal & Total Harga Jual dikali jumlah).
+- Validasi input: semua kolom angka (jumlah, profit, jumlah pesanan)
+  otomatis menolak huruf/minus saat diketik, dan dibulatkan ke nilai
+  minimum yang wajar begitu kolom ditinggalkan (misalnya kosong jadi 0,
+  jumlah bunga kosong/negatif jadi 1).
