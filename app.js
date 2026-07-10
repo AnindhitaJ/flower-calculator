@@ -1,40 +1,52 @@
-function clean(v){return Number(String(v).replace(/\./g,''))||0}
-function format(e){e.addEventListener('input',()=>{let x=e.value.replace(/\D/g,'');e.value=x?Number(x).toLocaleString('id-ID'):''})}
-document.querySelectorAll('.harga').forEach(format);
+const root=document.getElementById('sections');
 
-function addCard(parent,title,price){
-let d=document.createElement('div');
-d.className='item';
-d.innerHTML=`<b>${title}</b><label>Jumlah</label><input class="qty" value="0"><label>Harga</label><input class="harga" value="${price}">`;
-parent.appendChild(d);
-document.querySelectorAll('.harga').forEach(format);
+function money(e){
+e.addEventListener('input',()=>{
+let v=e.value.replace(/\D/g,'');
+e.value=v?Number(v).toLocaleString('id-ID'):'';
+});
+}
+function addSection(title,items){
+let s=document.createElement('section');
+s.className='card';
+s.innerHTML='<h2>'+title+'</h2>';
+items.forEach(i=>{
+s.innerHTML+=`
+<div class="item">
+<b>${i}</b>
+<label>Jumlah</label>
+<input class="qty" value="0">
+<label>Harga</label>
+<input class="harga" value="0" placeholder="Rp">
+</div>`;
+});
+root.appendChild(s);
 }
 
-let flowerCount=0;
-function addFlower(){
-flowerCount++;
-addCard(document.getElementById('flowers'),'🌸 Bunga '+flowerCount,5000);
-}
-addFlower();
+addSection('💐 Bunga',['Bunga']);
+addSection('🧸 Boneka',['Boneka 8 cm','Boneka 12 cm','Boneka 20 cm']);
+addSection('🎀 Packaging',['Cellophane','Pita','Daun','Paper Bag']);
+addSection('🍫 Snack',['Snack']);
+addSection('💵 Slot Uang',['Slot Uang']);
 
-addCard(boneka,'🧸 Boneka 8 cm',5000);
-addCard(boneka,'🧸 Boneka 12 cm',18000);
-addCard(boneka,'🧸 Boneka 20 cm',30000);
+addSection('⚙️ Biaya',['Listrik','Tenaga']);
 
-addCard(packaging,'📄 Cellophane',3000);
-addCard(packaging,'🎀 Pita',2000);
-addCard(packaging,'🍃 Daun',1000);
-addCard(packaging,'🛍 Paper Bag',10000);
+let profit=document.createElement('section');
+profit.className='card';
+profit.innerHTML='<h2>📈 Profit</h2><label>Persentase Profit (%)</label><input id="profit" value="30">';
+root.appendChild(profit);
 
-function hitung(){
+document.querySelectorAll('.harga').forEach(money);
+
+document.getElementById('calculate').onclick=()=>{
 let modal=0;
 document.querySelectorAll('.item').forEach(x=>{
-let q=x.querySelector('.qty'),h=x.querySelector('.harga');
-if(q&&h) modal+=Number(q.value||0)*clean(h.value);
+let q=x.querySelector('.qty').value||0;
+let h=x.querySelector('.harga').value.replace(/\./g,'')||0;
+modal+=Number(q)*Number(h);
 });
-modal+=clean(listrik.value)+clean(tenaga.value)+clean(jasa.value);
-modal+=Number(snackQty.value||0)*clean(snackPrice.value);
-modal+=Number(moneySlot.value||0);
-let jual=modal+(modal*Number(profit.value||0)/100);
-result.innerHTML=`Total Modal<br><h2>Rp${modal.toLocaleString('id-ID')}</h2>Harga Jual<br><h1>Rp${Math.round(jual).toLocaleString('id-ID')}</h1>`;
-}
+let p=Number(document.getElementById('profit').value)||0;
+let jual=modal+(modal*p/100);
+document.getElementById('modal').innerHTML='Rp'+modal.toLocaleString('id-ID');
+document.getElementById('jual').innerHTML='Rp'+Math.round(jual).toLocaleString('id-ID');
+};
