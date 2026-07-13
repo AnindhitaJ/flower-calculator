@@ -29,3 +29,26 @@ Update terbaru:
   otomatis menolak huruf/minus saat diketik, dan dibulatkan ke nilai
   minimum yang wajar begitu kolom ditinggalkan (misalnya kosong jadi 0,
   jumlah bunga kosong/negatif jadi 1).
+
+Update terbaru #2:
+- Kirim ke WhatsApp: tombol "📲 WhatsApp" di hasil, otomatis bikin
+  ringkasan teks (rincian + total modal + harga jual) dan buka WhatsApp
+  siap kirim.
+- Riwayat Pesanan: tombol jam 🕒 di pojok atas. Setiap hasil hitungan
+  bisa disimpan dengan nama sendiri, muncul di daftar riwayat, tinggal
+  tap "Buka" untuk memuat ulang semua input persis seperti saat
+  disimpan, atau 🗑 untuk menghapus.
+- Pembulatan Harga Jual: pilihan di section Profit — tidak dibulatkan,
+  dibulatkan ke atas kelipatan Rp500, atau Rp1.000. Angka profit di
+  hasil otomatis menyesuaikan supaya totalnya tetap konsisten.
+- Auto-simpan & Reset: input tersimpan otomatis di HP (walau app
+  ditutup/reload, data terakhir tetap ada). Tombol ↺ di sebelah
+  "Hitung Harga Jual" buat reset semua ke pengaturan awal (dengan
+  konfirmasi dulu).
+- Undo hapus baris: setiap hapus baris bunga/boneka/tambahan, muncul
+  notifikasi kecil dengan tombol "Undo" selama beberapa detik.
+- Grafik proporsi biaya: bar warna-warni di hasil yang menunjukkan
+  porsi tiap kategori (bunga, boneka, packaging, dll) terhadap total
+  modal, lengkap dengan persentase.
+- Mode gelap: tombol 🌙/☀️ di pojok atas, otomatis ikut preferensi
+  sistem HP kalau belum pernah diganti manual, dan pilihannya diingat.

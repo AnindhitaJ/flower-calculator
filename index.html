@@ -16,6 +16,10 @@
 
   <header class="app-header">
     <div class="header-blob" aria-hidden="true"></div>
+    <div class="header-tools">
+      <button type="button" class="icon-btn" id="historyBtn" aria-label="Riwayat pesanan">🕒</button>
+      <button type="button" class="icon-btn" id="themeBtn" aria-label="Ganti tema">🌙</button>
+    </div>
     <h1>🌷 Bloomy</h1>
     <p>Kalkulator harga buket &amp; hampers kamu</p>
   </header>
@@ -26,10 +30,25 @@
 </div>
 
 <div class="cta-bar">
-  <button class="calc-btn" onclick="calculate()">
-    <span>Hitung Harga Jual</span>
-  </button>
+  <div class="cta-bar-inner">
+    <button type="button" class="reset-btn" id="resetBtn" aria-label="Reset form">↺</button>
+    <button class="calc-btn" onclick="calculate()">
+      <span>Hitung Harga Jual</span>
+    </button>
+  </div>
 </div>
+
+<div class="overlay" id="historyOverlay">
+  <div class="panel">
+    <div class="panel-head">
+      <h2>🕒 Riwayat Pesanan</h2>
+      <button type="button" class="panel-close" id="closeHistoryBtn" aria-label="Tutup">✕</button>
+    </div>
+    <div class="panel-body" id="historyList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script src="app.js"></script>
 </body>
